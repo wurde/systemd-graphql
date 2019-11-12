@@ -1,5 +1,17 @@
+"""
+A GraphQL schema for systemd.
+"""
 type Query {
   services: [Unit!]!
+}
+
+type Mutation {
+  start(pattern: String!): Boolean!
+  stop(pattern: String!): Boolean!
+  reload(pattern: String!): Boolean!
+  restart(pattern: String!): Boolean!
+  kill(pattern: String!): Boolean!
+  poweroff: Boolean!
 }
 
 type Unit {
