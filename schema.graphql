@@ -22,25 +22,25 @@ The root Mutation type.
 """
 type Mutation {
   """
-  Start (activate) one or more units.
+  Start (activate) one or more units. Returns the exit code of the process.
   """
   start(pattern: String!): Int!
   """
-  Stop (deactivate) one or more units.
+  Stop (deactivate) one or more units. Returns the exit code of the process.
   """
   stop(pattern: String!): Int!
   """
-  Reload configuration for one or more units.
+  Reload configuration for one or more units. Returns the exit code of the process.
   """
   reload(pattern: String!): Int!
   """
-  Stop then start one or more units.
+  Stop then start one or more units. Returns the exit code of the process.
   """
   restart(pattern: String!): Int!
   """
-  Shut down and power-off the system.
+  Shut down and power-off the system. Returns the exit code of the process.
   """
-  poweroff: Boolean!
+  poweroff: Int!
 }
 
 """
