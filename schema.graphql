@@ -35,8 +35,12 @@ type Unit {
 The status of a systemd Unit type.
 """
 type UnitStatus {
+  "Exit code of the process."
   statusCode: Int!
+  "Unit's current load state."
   loadState: String
+  "Unit's current active state."
   activeState: String
+  "Main process ID for the unit."
   mainPid: Int
 }
