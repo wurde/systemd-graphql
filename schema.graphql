@@ -3,6 +3,8 @@ The root Query type.
 """
 type Query {
   info: String!
+  "Version of systemd."
+  version: String!
   units: [Unit!]!
   status(pattern: String!): UnitStatus!
 }
