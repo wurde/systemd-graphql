@@ -1,13 +1,15 @@
 type Query {
-  services: [Service!]!
+  services: [Unit!]!
 }
 
-type Service {
-  status: UnitStatus
+type Unit {
+  type: String!
+  status: UnitStatus!
+  dependencies: [Units!]!
 }
 
 type UnitStatus {
-  loaded: String
-  active: String
-  main_pid: Integer
+  loaded: String!
+  active: String!
+  main_pid: Integer!
 }
