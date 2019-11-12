@@ -21,11 +21,25 @@ type Query {
 The root Mutation type.
 """
 type Mutation {
+  """
+  Start (activate) one or more units.
+  """
   start(pattern: String!): Boolean!
+  """
+  Stop (deactivate) one or more units.
+  """
   stop(pattern: String!): Boolean!
+  """
+  Reload configuration for one or more units.
+  """
   reload(pattern: String!): Boolean!
+  """
+  Stop then start one or more units.
+  """
   restart(pattern: String!): Boolean!
-  kill(pattern: String!): Boolean!
+  """
+  Shut down and power-off the system.
+  """
   poweroff: Boolean!
 }
 
