@@ -34,9 +34,13 @@ type Mutation {
   """
   reload(pattern: String!): Int!
   """
-  Stop then start one or more units. Returns the exit code of the process.
+  Stop then start one or more units. If the units are not running yet, they will be started. Returns the exit code of the process.
   """
   restart(pattern: String!): Int!
+  """
+  Stop then start one or more units. This does nothing if units are not running. Returns the exit code of the process.
+  """
+  tryRestart(pattern: String!): Int!
   """
   Shut down and power-off the system. Returns the exit code of the process.
   """

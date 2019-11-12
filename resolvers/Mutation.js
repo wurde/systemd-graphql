@@ -47,3 +47,13 @@ exports.restart = (parent, args) => {
 
   return result.status;
 };
+
+exports.tryRestart = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['try-restart', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
