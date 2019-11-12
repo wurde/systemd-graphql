@@ -14,11 +14,20 @@ const { GraphQLServer } = require('graphql-yoga');
 const port = process.env.PORT || 18888;
 
 /**
+ * Require root privileges
+ */
+
+if (process.getuid() !== 0) {
+  throw new Error('This server requires root privileges.');
+}
+
+/**
  * Define resolvers
  */
 
 const resolvers = {
   Query: require('./resolvers/Query'),
+  Mutation: require('./resolvers/Mutation'),
 };
 
 /**
