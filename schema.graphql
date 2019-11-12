@@ -1,0 +1,13 @@
+type Query {
+  services: [Service!]!
+}
+
+type Service {
+  status: UnitStatus
+}
+
+type UnitStatus {
+  loaded: String
+  active: String
+  main_pid: Integer
+}
