@@ -78,60 +78,60 @@ exports.tryReloadOrRestart = (parent, args) => {
   return result.status;
 };
 
-exports.poweroff = (parent, args) => {
+exports.poweroff = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['poweroff', args.pattern],
+    ['poweroff'],
     { encoding: 'utf8' }
   );
 
   return result.status;
 };
 
-exports.halt = (parent, args) => {
+exports.halt = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['halt', args.pattern],
+    ['halt'],
     { encoding: 'utf8' }
   );
 
   return result.status;
 };
 
-exports.reboot = (parent, args) => {
+exports.reboot = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['reboot', args.pattern],
+    ['reboot'],
     { encoding: 'utf8' }
   );
 
   return result.status;
 };
 
-exports.suspend = (parent, args) => {
+exports.suspend = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['suspend', args.pattern],
+    ['suspend'],
     { encoding: 'utf8' }
   );
 
   return result.status;
 };
 
-exports.hibernate = (parent, args) => {
+exports.hibernate = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['hibernate', args.pattern],
+    ['hibernate'],
     { encoding: 'utf8' }
   );
 
   return result.status;
 };
 
-exports.hybridSleep = (parent, args) => {
+exports.hybridSleep = () => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['hybrid-sleep', args.pattern],
+    ['hybrid-sleep'],
     { encoding: 'utf8' }
   );
 

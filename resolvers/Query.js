@@ -46,3 +46,23 @@ exports.status = (parent, args) => {
     console.error('e', e);
   }
 };
+
+exports.isActive = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['is-active', args.pattern],
+    { encoding: 'utf8' }
+  );
+  
+  return result.status;
+};
+
+exports.isFailed = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['is-failed', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};

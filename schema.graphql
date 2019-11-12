@@ -14,6 +14,17 @@ type Query {
   Terse runtime status information about a unit.
   """
   status(pattern: String!): UnitStatus!
+  """
+  Check if any specified unit is active. Return exit code 0 if any unit is active, or non-zero otherwise.
+  """
+  isActive(pattern: String!): Int!
+  """
+  Check if any specified unit is failed. Return exit code 0 if any unit is failed, or non-zero otherwise.
+  """
+  isFailed(pattern: String!): Int!
+  """
+  List of all units.
+  """
   units: [Unit!]!
 }
 
