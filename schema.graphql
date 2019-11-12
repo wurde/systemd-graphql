@@ -2,6 +2,7 @@
 The root Query type.
 """
 type Query {
+  info: String!
   units: [Unit!]!
 }
 
@@ -23,7 +24,7 @@ A systemd Unit type.
 type Unit {
   type: String!
   status: UnitStatus!
-  dependencies: [Units!]!
+  dependencies: [Unit!]!
 }
 
 """
@@ -32,5 +33,5 @@ The status of a systemd Unit type.
 type UnitStatus {
   loaded: String!
   active: String!
-  main_pid: Integer!
+  main_pid: Int!
 }
