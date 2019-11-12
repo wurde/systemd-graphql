@@ -27,7 +27,7 @@ query {
 //=> {
 //=>   "data": {
 //=>     "status": {
-//=>       "loadState": true,
+//=>       "loadState": "loaded",
 //=>       "activeState": true,
 //=>       "mainPid": 22229
 //=>     }

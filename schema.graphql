@@ -6,6 +6,7 @@ type Query {
   "Version of systemd."
   version: String!
   units: [Unit!]!
+  "Terse runtime status information about a unit."
   status(pattern: String!): UnitStatus!
 }
 
