@@ -4,6 +4,7 @@ The root Query type.
 type Query {
   info: String!
   units: [Unit!]!
+  status(pattern: String!): UnitStatus!
 }
 
 """
