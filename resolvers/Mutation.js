@@ -8,6 +8,16 @@ const child_process = require('child_process');
  * Define and export resolvers
  */
 
+exports.daemonReload = () => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['daemon-reload'],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
 exports.setDefault = (parent, args) => {
   const result = child_process.spawnSync(
     'systemctl',
