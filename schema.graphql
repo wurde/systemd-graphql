@@ -53,6 +53,26 @@ type Mutation {
   Shut down and power-off the system. Returns the exit code of the process.
   """
   poweroff: Int!
+  """
+  Shut down and halt the system. Returns the exit code of the process.
+  """
+  halt: Int!
+  """
+  Shut down and reboot the system. Returns the exit code of the process.
+  """
+  reboot: Int!
+  """
+  Suspend the system. Returns the exit code of the process.
+  """
+  suspend: Int!
+  """
+  Hibernate the system. Returns the exit code of the process.
+  """
+  hibernate: Int!
+  """
+  Hibernate and suspend the system. Returns the exit code of the process.
+  """
+  hybridSleep: Int!
 }
 
 """

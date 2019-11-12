@@ -77,3 +77,63 @@ exports.tryReloadOrRestart = (parent, args) => {
 
   return result.status;
 };
+
+exports.poweroff = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['poweroff', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.halt = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['halt', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.reboot = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['reboot', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.suspend = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['suspend', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.hibernate = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['hibernate', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.hybridSleep = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['hybrid-sleep', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
