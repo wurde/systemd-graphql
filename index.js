@@ -6,6 +6,7 @@
 
 const path = require('path');
 const { GraphQLServer } = require('graphql-yoga');
+const pidof = require('./helpers/pidof');
 
 /**
  * Constants
@@ -14,11 +15,19 @@ const { GraphQLServer } = require('graphql-yoga');
 const port = process.env.PORT || 18888;
 
 /**
- * Require root privileges
+ * Require root privileges.
  */
 
 if (process.getuid() !== 0) {
   throw new Error('This server requires root privileges.');
+}
+
+/**
+ * Require systemd is the init process.
+ */
+
+if (!pidof('/sbin/init').includes(pidof('systemd').pop())) {
+  throw new Error('The init process must be systemd.');
 }
 
 /**
