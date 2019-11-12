@@ -47,6 +47,16 @@ exports.status = (parent, args) => {
   }
 };
 
+exports.getDefault = () => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['get-default'],
+    { encoding: 'utf8' }
+  );
+
+  return result.stdout.trim();
+};
+
 exports.isActive = (parent, args) => {
   const result = child_process.spawnSync(
     'systemctl',

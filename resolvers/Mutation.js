@@ -8,6 +8,16 @@ const child_process = require('child_process');
  * Define and export resolvers
  */
 
+exports.setDefault = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['set-default', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
 exports.start = (parent, args) => {
   const result = child_process.spawnSync(
     'systemctl',

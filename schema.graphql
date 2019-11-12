@@ -15,6 +15,10 @@ type Query {
   """
   status(pattern: String!): UnitStatus!
   """
+  Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to.
+  """
+  getDefault: String!
+  """
   Check if any specified unit is active. Return exit code 0 if any unit is active, or non-zero otherwise.
   """
   isActive(pattern: String!): Int!
@@ -32,6 +36,10 @@ type Query {
 The root Mutation type.
 """
 type Mutation {
+  """
+  Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit. Returns the exit code of the process.
+  """
+  setDefault(name: String!): Int!
   """
   Start (activate) one or more units. Returns the exit code of the process.
   """
