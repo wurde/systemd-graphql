@@ -34,7 +34,7 @@ type Unit {
 The status of a systemd Unit type.
 """
 type UnitStatus {
-  loaded: String
-  active: String
+  loadState: String
+  activeState: String
   mainPid: Int
 }

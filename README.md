@@ -12,6 +12,29 @@ sudo npm start
 //=> Server is running on http://localhost:18888
 ```
 
+## Examples
+
+Get the status of a service.
+
+```
+query {
+  status(pattern: 'docker.service') {
+    loadState
+    activeState
+    mainPid
+  }
+}
+//=> {
+//=>   "data": {
+//=>     "status": {
+//=>       "loadState": true,
+//=>       "activeState": true,
+//=>       "mainPid": 22229
+//=>     }
+//=>   }
+//=> }
+```
+
 ## License
 
 [MIT licensed](./LICENSE)
