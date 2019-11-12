@@ -19,10 +19,16 @@ exports.version = () => {
 
 exports.status = (parent, args) => {
   try {
-    // const result = child_process.execSync(`systemctl status docker.service`, { encoding: 'utf8' });
-    const result = child_process.execSync(`systemctl status ${args.pattern}`, { encoding: 'utf8' });
-    const lines = result.split('\n');
-    const res = {}
+    const result = child_process.spawnSync(
+      'systemctl',
+      ['status', args.pattern],
+      { encoding: 'utf8' }
+    );
+
+    const res = {};
+    res['statusCode'] = result.status;
+
+    const lines = result.stdout.split('\n');
     lines.forEach(line => {
       if (line.match(/Loaded/)) {
         res['loadState'] = line.trim().split(' ')[1];
@@ -34,9 +40,9 @@ exports.status = (parent, args) => {
         res['mainPid'] = line.match(/\b\d+\b/)[0];
       }
     })
-    console.log('res', res)
-    return res
+
+    return res;
   } catch (e) {
-    console.error('e', e)
+    console.error('e', e);
   }
 };
