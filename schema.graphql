@@ -11,6 +11,10 @@ type Query {
   """
   version: String!
   """
+  Checks whether the system is operational. Return exit code 0 when the system is fully up and running, or non-zero otherwise.
+  """
+  isSystemRunning: Int!
+  """
   Terse runtime status information about a unit.
   """
   status(pattern: String!): UnitStatus!

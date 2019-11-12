@@ -17,6 +17,14 @@ exports.version = () => {
   return result.match(/\b\d+\b/)[0];
 };
 
+exports.isSystemRunning = () => {
+  const result = child_process.spawnSync('systemctl', ['is-system-running'], {
+    encoding: 'utf8'
+  });
+
+  return result.stdout.trim();
+};
+
 exports.status = (parent, args) => {
   try {
     const result = child_process.spawnSync(
