@@ -1,4 +1,4 @@
-# systemd-graphQL
+# systemd-graphql
 
 A GraphQL API for [systemd](https://github.com/systemd/systemd).
 
