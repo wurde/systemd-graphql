@@ -2,12 +2,19 @@
 The root Query type.
 """
 type Query {
+  """
+  General information.
+  """
   info: String!
-  "Version of systemd."
+  """
+  Version of systemd.
+  """
   version: String!
-  units: [Unit!]!
-  "Terse runtime status information about a unit."
+  """
+  Terse runtime status information about a unit.
+  """
   status(pattern: String!): UnitStatus!
+  units: [Unit!]!
 }
 
 """
