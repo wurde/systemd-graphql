@@ -1,10 +1,13 @@
 """
-A GraphQL schema for systemd.
+The root Query type.
 """
 type Query {
-  services: [Unit!]!
+  units: [Unit!]!
 }
 
+"""
+The root Mutation type.
+"""
 type Mutation {
   start(pattern: String!): Boolean!
   stop(pattern: String!): Boolean!
@@ -14,12 +17,18 @@ type Mutation {
   poweroff: Boolean!
 }
 
+"""
+A systemd Unit type.
+"""
 type Unit {
   type: String!
   status: UnitStatus!
   dependencies: [Units!]!
 }
 
+"""
+The status of a systemd Unit type.
+"""
 type UnitStatus {
   loaded: String!
   active: String!
