@@ -24,19 +24,19 @@ type Mutation {
   """
   Start (activate) one or more units.
   """
-  start(pattern: String!): Boolean!
+  start(pattern: String!): Int!
   """
   Stop (deactivate) one or more units.
   """
-  stop(pattern: String!): Boolean!
+  stop(pattern: String!): Int!
   """
   Reload configuration for one or more units.
   """
-  reload(pattern: String!): Boolean!
+  reload(pattern: String!): Int!
   """
   Stop then start one or more units.
   """
-  restart(pattern: String!): Boolean!
+  restart(pattern: String!): Int!
   """
   Shut down and power-off the system.
   """
