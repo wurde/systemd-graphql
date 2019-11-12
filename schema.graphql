@@ -42,6 +42,10 @@ type Mutation {
   """
   tryRestart(pattern: String!): Int!
   """
+  Reload one or more units if they support it. If not, stop and then start them instead. If the units are not running yet, they will be started. Returns the exit code of the process.
+  """
+  reloadOrRestart(pattern: String!): Int!
+  """
   Shut down and power-off the system. Returns the exit code of the process.
   """
   poweroff: Int!

@@ -57,3 +57,13 @@ exports.tryRestart = (parent, args) => {
 
   return result.status;
 };
+
+exports.reloadOrRestart = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['reload-or-restart', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
