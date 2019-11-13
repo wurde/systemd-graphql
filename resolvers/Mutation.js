@@ -157,3 +157,13 @@ exports.hybridSleep = () => {
 
   return result.status;
 };
+
+exports.enable = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['enable', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};

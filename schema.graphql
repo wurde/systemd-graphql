@@ -49,6 +49,10 @@ type Mutation {
   """
   setDefault(name: String!): Int!
   """
+  Enable one or more units or unit instances. Returns the exit code of the process.
+  """
+  enable(pattern: String!): Int!
+  """
   Start (activate) one or more units. Returns the exit code of the process.
   """
   start(pattern: String!): Int!
