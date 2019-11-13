@@ -84,3 +84,13 @@ exports.isFailed = (parent, args) => {
 
   return result.status;
 };
+
+exports.isEnabled = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['is-enabled', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};

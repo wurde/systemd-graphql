@@ -31,6 +31,10 @@ type Query {
   """
   isFailed(pattern: String!): Int!
   """
+  Checks whether any of the specified unit files are enabled. Return exit code 0 if any unit is enabled, or non-zero otherwise.
+  """
+  isEnabled(pattern: String!): Int!
+  """
   List of all units.
   """
   units: [Unit!]!
