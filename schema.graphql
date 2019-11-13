@@ -57,6 +57,10 @@ type Mutation {
   """
   reenable(pattern: String!): Int!
   """
+  Disables one or more units. Returns the exit code of the process.
+  """
+  disable(pattern: String!): Int!
+  """
   Start (activate) one or more units. Returns the exit code of the process.
   """
   start(pattern: String!): Int!
