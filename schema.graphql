@@ -73,6 +73,10 @@ type Mutation {
   """
   unmask(pattern: String!): Int!
   """
+  Revert one or more unit files to their vendor versions. Returns the exit code of the process.
+  """
+  revert(pattern: String!): Int!
+  """
   Start (activate) one or more units. Returns the exit code of the process.
   """
   start(pattern: String!): Int!
