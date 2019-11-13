@@ -2,29 +2,29 @@
 
 """
 enum UnitTypes {
-  service
-  socket
-  device
-  mount
-  automount
-  swap
-  target
-  path
-  timer
-  slice
-  scope
+  SERVICE
+  SOCKET
+  DEVICE
+  MOUNT
+  AUTOMOUNT
+  SWAP
+  TARGET
+  PATH
+  TIMER
+  SLICE
+  SCOPE
 }
 
 """
 
 """
 enum ServiceTypes {
-  simple
-  forking
-  oneshot
-  notify
-  dbus
-  idle
+  SIMPLE
+  FORKING
+  ONESHOT
+  NOTIFY
+  DBUS
+  IDLE
 }
 
 """
