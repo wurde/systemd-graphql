@@ -197,3 +197,13 @@ exports.mask = (parent, args) => {
 
   return result.status;
 };
+
+exports.unmask = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['unmask', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
