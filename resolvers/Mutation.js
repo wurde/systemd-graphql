@@ -187,3 +187,13 @@ exports.disables = (parent, args) => {
 
   return result.status;
 };
+
+exports.mask = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['mask', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
