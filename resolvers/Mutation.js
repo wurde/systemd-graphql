@@ -208,6 +208,26 @@ exports.unmask = (parent, args) => {
   return result.status;
 };
 
+exports.preset = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['preset', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
+exports.presetAll = () => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['preset-all'],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
+
 exports.revert = (parent, args) => {
   const result = child_process.spawnSync(
     'systemctl',

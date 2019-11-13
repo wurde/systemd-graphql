@@ -73,6 +73,14 @@ type Mutation {
   """
   unmask(pattern: String!): Int!
   """
+  Reset the enable/disable status one or more unit files. Returns the exit code of the process.
+  """
+  preset(pattern: String!): Int!
+  """
+  Resets all installed unit files to the defaults configured in the preset policy file. Returns the exit code of the process.
+  """
+  presetAll: Int!
+  """
   Revert one or more unit files to their vendor versions. Returns the exit code of the process.
   """
   revert(pattern: String!): Int!
