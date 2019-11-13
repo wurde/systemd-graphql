@@ -167,3 +167,13 @@ exports.enable = (parent, args) => {
 
   return result.status;
 };
+
+exports.reenable = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['reenable', args.pattern],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
