@@ -77,6 +77,10 @@ type Mutation {
   """
   revert(pattern: String!): Int!
   """
+  Link a unit file that is not in the unit file search paths into the unit file search path. Returns the exit code of the process.
+  """
+  link(path: String!): Int!
+  """
   Start (activate) one or more units. Returns the exit code of the process.
   """
   start(pattern: String!): Int!

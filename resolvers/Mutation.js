@@ -217,3 +217,13 @@ exports.revert = (parent, args) => {
 
   return result.status;
 };
+
+exports.link = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['link', args.path],
+    { encoding: 'utf8' }
+  );
+
+  return result.status;
+};
