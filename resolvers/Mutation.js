@@ -178,10 +178,10 @@ exports.reenable = (parent, args) => {
   return result.status;
 };
 
-exports.disables = (parent, args) => {
+exports.disable = (parent, args) => {
   const result = child_process.spawnSync(
     'systemctl',
-    ['disables', args.pattern],
+    ['disable', args.pattern],
     { encoding: 'utf8' }
   );
 

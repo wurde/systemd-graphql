@@ -1,4 +1,33 @@
 """
+
+"""
+enum UnitTypes {
+  service
+  socket
+  device
+  mount
+  automount
+  swap
+  target
+  path
+  timer
+  slice
+  scope
+}
+
+"""
+
+"""
+enum ServiceTypes {
+  simple
+  forking
+  oneshot
+  notify
+  dbus
+  idle
+}
+
+"""
 The root Query type.
 """
 type Query {
@@ -35,7 +64,7 @@ type Query {
   """
   isEnabled(pattern: String!): Int!
   """
-  List of all units.
+  List units that systemd currently has in memory.
   """
   units: [Unit!]!
 }
@@ -146,6 +175,7 @@ type Mutation {
 A systemd Unit type.
 """
 type Unit {
+  name: String!
   type: String!
   status: UnitStatus!
   dependencies: [Unit!]!

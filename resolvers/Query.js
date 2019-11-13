@@ -94,3 +94,18 @@ exports.isEnabled = (parent, args) => {
 
   return result.status;
 };
+
+exports.units = (parent, args) => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['list-units', '--full', '--plain', '--no-legend', '--no-pager'],
+    { encoding: 'utf8' }
+  );
+
+  const units = result.stdout.split('\n').map(unitLine => {
+    return unitLine.split(/\s+/);
+  });
+  console.log('units', units);
+
+  return [];
+};
