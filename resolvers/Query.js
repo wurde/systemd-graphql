@@ -87,11 +87,14 @@ exports.units = () => {
 };
 
 exports.services = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=service'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=service'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -113,11 +116,14 @@ exports.services = () => {
 };
 
 exports.sockets = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=socket'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=socket'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -139,11 +145,14 @@ exports.sockets = () => {
 };
 
 exports.devices = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=device'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=device'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -165,11 +174,14 @@ exports.devices = () => {
 };
 
 exports.mounts = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=mount'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=mount'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -191,11 +203,14 @@ exports.mounts = () => {
 };
 
 exports.automounts = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=automount'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=automount'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -217,11 +232,14 @@ exports.automounts = () => {
 };
 
 exports.swaps = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=swap'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=swap'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -243,11 +261,14 @@ exports.swaps = () => {
 };
 
 exports.targets = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=target'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=target'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -269,11 +290,14 @@ exports.targets = () => {
 };
 
 exports.paths = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=path'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=path'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -295,11 +319,14 @@ exports.paths = () => {
 };
 
 exports.timers = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=timer'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=timer'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -321,11 +348,14 @@ exports.timers = () => {
 };
 
 exports.slices = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=slice'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=slice'
+  ]);
 
   const unitList = result.stdout
     .trim()
@@ -347,11 +377,14 @@ exports.slices = () => {
 };
 
 exports.scopes = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=scope'],
-    { encoding: 'utf8' }
-  );
+  const result = systemctl([
+    'list-units',
+    '--full',
+    '--plain',
+    '--no-legend',
+    '--no-pager',
+    '--type=scope'
+  ]);
 
   const unitList = result.stdout
     .trim()
