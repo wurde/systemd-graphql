@@ -2,248 +2,83 @@
  * Dependencies
  */
 
-const child_process = require('child_process');
+const systemctl = require('../helpers/systemctl');
 
 /**
  * Define and export resolvers
  */
 
-exports.daemonReload = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['daemon-reload'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
+exports.daemonReload = () => systemctl(['daemon-reload']).status;
 
 exports.setDefault = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['set-default', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['set-default', args.pattern]).status;
 };
 
 exports.start = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['start', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['start', args.pattern]).status;
 };
 
 exports.stop = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['stop', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['stop', args.pattern]).status;
 };
 
 exports.reload = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['reload', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['reload', args.pattern]).status;
 };
 
 exports.restart = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['restart', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['restart', args.pattern]).status;
 };
 
 exports.tryRestart = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['try-restart', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['try-restart', args.pattern]).status;
 };
 
 exports.reloadOrRestart = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['reload-or-restart', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['reload-or-restart', args.pattern]).status;
 };
 
 exports.tryReloadOrRestart = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['try-reload-or-restart', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['try-reload-or-restart', args.pattern]).status;
 };
 
-exports.poweroff = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['poweroff'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
-
-exports.halt = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['halt'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
-
-exports.reboot = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['reboot'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
-
-exports.suspend = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['suspend'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
-
-exports.hibernate = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['hibernate'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
-
-exports.hybridSleep = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['hybrid-sleep'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
+exports.poweroff = () => systemctl(['poweroff']).status;
+exports.halt = () => systemctl(['halt']).status;
+exports.reboot = () => systemctl(['reboot']).status;
+exports.suspend = () => systemctl(['suspend']).status;
+exports.hibernate = () => systemctl(['hibernate']).status;
+exports.hybridSleep = () => systemctl(['hybrid-sleep']).status;
 
 exports.enable = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['enable', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['enable', args.pattern]).status;
 };
 
 exports.reenable = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['reenable', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['reenable', args.pattern]).status;
 };
 
 exports.disable = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['disable', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['disable', args.pattern]).status;
 };
 
 exports.mask = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['mask', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['mask', args.pattern]).status;
 };
 
 exports.unmask = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['unmask', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['unmask', args.pattern]).status;
 };
 
 exports.preset = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['preset', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['preset', args.pattern]).status;
 };
 
-exports.presetAll = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['preset-all'],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
-};
+exports.presetAll = (parent, args) => systemctl(['preset-all']).status;
 
 exports.revert = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['revert', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['revert', args.pattern]).status;
 };
 
 exports.link = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['link', args.path],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['link', args.path]).status;
 };
