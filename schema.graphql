@@ -107,6 +107,10 @@ type Query {
   List slices that systemd currently has in memory.
   """
   slices: [Unit!]!
+  """
+  List scopes that systemd currently has in memory.
+  """
+  scopes: [Unit!]!
 }
 
 """
