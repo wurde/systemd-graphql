@@ -2,7 +2,7 @@
  * Dependencies
  */
 
-const child_process = require('child_process');
+const systemctl = require('../helpers/systemctl');
 
 /**
  * Define and export resolvers
@@ -10,11 +10,7 @@ const child_process = require('child_process');
 
 exports.status = (parent, args) => {
   try {
-    const result = child_process.spawnSync(
-      'systemctl',
-      ['status', parent.name],
-      { encoding: 'utf8' }
-    );
+    const result = systemctl(['set-default', parent.name]);
 
     const res = {};
     res['statusCode'] = result.status;

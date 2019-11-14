@@ -4,6 +4,7 @@
 
 const path = require('path');
 const child_process = require('child_process');
+const systemctl = require('../helpers/systemctl');
 
 /**
  * Define and export resolvers
@@ -14,25 +15,18 @@ exports.info = () => {
 };
 
 exports.version = () => {
-  const result = child_process.execSync('systemctl --version', { encoding: 'utf8' });
+  const result = systemctl(['daemon-reload', '--version']);
   return result.match(/\b\d+\b/)[0];
 };
 
 exports.isSystemRunning = () => {
-  const result = child_process.spawnSync('systemctl', ['is-system-running'], {
-    encoding: 'utf8'
-  });
-
+  const result = systemctl(['is-system-running']);
   return result.stdout.trim();
 };
 
 exports.status = (parent, args) => {
   try {
-    const result = child_process.spawnSync(
-      'systemctl',
-      ['status', args.pattern],
-      { encoding: 'utf8' }
-    );
+    const result = systemctl(['status', args.pattern]);
 
     const res = {};
     res['statusCode'] = result.status;
@@ -57,43 +51,19 @@ exports.status = (parent, args) => {
 };
 
 exports.getDefault = () => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['get-default'],
-    { encoding: 'utf8' }
-  );
-
-  return result.stdout.trim();
+  return systemctl(['get-default']).stdout.trim();
 };
 
 exports.isActive = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['is-active', args.pattern],
-    { encoding: 'utf8' }
-  );
-  
-  return result.status;
+  return systemctl(['is-active', args.pattern]).status;
 };
 
 exports.isFailed = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['is-failed', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['is-failed', args.pattern]).status;
 };
 
 exports.isEnabled = (parent, args) => {
-  const result = child_process.spawnSync(
-    'systemctl',
-    ['is-enabled', args.pattern],
-    { encoding: 'utf8' }
-  );
-
-  return result.status;
+  return systemctl(['is-enabled', args.pattern]).status;
 };
 
 exports.units = () => {
