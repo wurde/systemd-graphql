@@ -5,6 +5,7 @@
 const path = require('path');
 const child_process = require('child_process');
 const systemctl = require('../helpers/systemctl');
+const unitListParser = require('../helpers/unitListParser');
 
 /**
  * Define and export resolvers
@@ -96,23 +97,7 @@ exports.services = () => {
     '--type=service'
   ]);
 
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  return unitListParser(result.stdout);
 };
 
 exports.sockets = () => {
@@ -125,23 +110,7 @@ exports.sockets = () => {
     '--type=socket'
   ]);
 
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  return unitListParser(result.stdout);
 };
 
 exports.devices = () => {
@@ -153,24 +122,8 @@ exports.devices = () => {
     '--no-pager',
     '--type=device'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.mounts = () => {
@@ -182,24 +135,8 @@ exports.mounts = () => {
     '--no-pager',
     '--type=mount'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.automounts = () => {
@@ -211,24 +148,8 @@ exports.automounts = () => {
     '--no-pager',
     '--type=automount'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.swaps = () => {
@@ -240,24 +161,8 @@ exports.swaps = () => {
     '--no-pager',
     '--type=swap'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.targets = () => {
@@ -269,24 +174,8 @@ exports.targets = () => {
     '--no-pager',
     '--type=target'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.paths = () => {
@@ -298,24 +187,8 @@ exports.paths = () => {
     '--no-pager',
     '--type=path'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.timers = () => {
@@ -327,24 +200,8 @@ exports.timers = () => {
     '--no-pager',
     '--type=timer'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.slices = () => {
@@ -356,24 +213,8 @@ exports.slices = () => {
     '--no-pager',
     '--type=slice'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
 
 exports.scopes = () => {
@@ -385,22 +226,6 @@ exports.scopes = () => {
     '--no-pager',
     '--type=scope'
   ]);
-
-  const unitList = result.stdout
-    .trim()
-    .split('\n')
-    .map(unitLine => {
-      const cols = unitLine.split(/\s+/);
-      const type = path
-        .extname(cols[0])
-        .toUpperCase()
-        .replace('.', '');
-
-      return {
-        name: cols[0],
-        type: type
-      };
-    });
-
-  return unitList;
+  
+  return unitListParser(result.stdout);
 };
