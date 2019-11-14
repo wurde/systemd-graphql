@@ -79,6 +79,10 @@ type Query {
   List devices that systemd currently has in memory.
   """
   devices: [Unit!]!
+  """
+  List mounts that systemd currently has in memory.
+  """
+  mounts: [Unit!]!
 }
 
 """
