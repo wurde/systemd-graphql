@@ -177,7 +177,7 @@ A systemd Unit type.
 type Unit {
   name: String!
   type: UnitType!
-  status: UnitStatus
+  status: UnitStatus!
   dependencies: [Unit]
 }
 

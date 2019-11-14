@@ -2,18 +2,18 @@
  * Define and export resolvers
  */
 
-exports.statusCode = () => {
-  return 0;
+exports.statusCode = (parent) => {
+  return parent.statusCode;
 };
 
-exports.loadState = () => {
-  return 'loaded';
+exports.loadState = (parent) => {
+  return parent.loadState;
 };
 
-exports.activeState = () => {
-  return 'active';
+exports.activeState = (parent) => {
+  return parent.activeState;
 };
 
-exports.mainPid = () => {
-  return 0;
+exports.mainPid = (parent) => {
+  return parent.mainPid;
 };
