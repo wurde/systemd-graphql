@@ -189,3 +189,29 @@ exports.mounts = () => {
 
   return unitList;
 };
+
+exports.automounts = () => {
+  const result = child_process.spawnSync(
+    'systemctl',
+    ['list-units', '--full', '--plain', '--no-legend', '--no-pager', '--type=automount'],
+    { encoding: 'utf8' }
+  );
+
+  const unitList = result.stdout
+    .trim()
+    .split('\n')
+    .map(unitLine => {
+      const cols = unitLine.split(/\s+/);
+      const type = path
+        .extname(cols[0])
+        .toUpperCase()
+        .replace('.', '');
+
+      return {
+        name: cols[0],
+        type: type
+      };
+    });
+
+  return unitList;
+};

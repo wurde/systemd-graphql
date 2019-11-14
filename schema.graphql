@@ -83,6 +83,10 @@ type Query {
   List mounts that systemd currently has in memory.
   """
   mounts: [Unit!]!
+  """
+  List automounts that systemd currently has in memory.
+  """
+  automounts: [Unit!]!
 }
 
 """
