@@ -33,7 +33,3 @@ exports.status = (parent, args) => {
     console.error('e', e);
   }
 };
-
-exports.dependencies = () => {
-  return [];
-};

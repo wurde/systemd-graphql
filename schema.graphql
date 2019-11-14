@@ -67,6 +67,10 @@ type Query {
   List units that systemd currently has in memory.
   """
   units: [Unit!]!
+  """
+  List services that systemd currently has in memory.
+  """
+  services: [Unit!]!
 }
 
 """
@@ -176,7 +180,7 @@ A systemd Unit type.
 """
 type Unit {
   """
-  Unique name of a unit.
+  Unique name of the unit.
   """
   name: String!
   """
@@ -184,7 +188,7 @@ type Unit {
   """
   type: UnitType!
   """
-  The status of a unit.
+  The status of the unit.
   """
   status: UnitStatus!
 }
