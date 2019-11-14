@@ -103,6 +103,10 @@ type Query {
   List timers that systemd currently has in memory.
   """
   timers: [Unit!]!
+  """
+  List slices that systemd currently has in memory.
+  """
+  slices: [Unit!]!
 }
 
 """
