@@ -178,8 +178,8 @@ A systemd Unit type.
 type Unit {
   name: String!
   type: UnitType!
-  status: UnitStatus!
-  dependencies: [Unit!]!
+  # status: UnitStatus!
+  # dependencies: [Unit!]!
 }
 
 """
