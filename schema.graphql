@@ -75,6 +75,10 @@ type Query {
   List sockets that systemd currently has in memory.
   """
   sockets: [Unit!]!
+  """
+  List devices that systemd currently has in memory.
+  """
+  devices: [Unit!]!
 }
 
 """
