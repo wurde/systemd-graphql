@@ -111,6 +111,10 @@ type Query {
   List scopes that systemd currently has in memory.
   """
   scopes: [Unit!]!
+  """
+  List all running units ordered by the time they took to initialize.
+  """
+  blame: [Unit!]!
 }
 
 """
@@ -231,6 +235,10 @@ type Unit {
   The status of the unit.
   """
   status: UnitStatus!
+  """
+  Time it took to initialize this unit (milliseconds).
+  """
+  timeToInitialize: Int!
 }
 
 """

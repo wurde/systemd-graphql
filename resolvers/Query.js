@@ -6,6 +6,7 @@ const path = require('path');
 const child_process = require('child_process');
 const systemctl = require('../helpers/systemctl');
 const unitListParser = require('../helpers/unitListParser');
+const systemdAnalyze = require('../helpers/systemdAnalyze');
 
 /**
  * Define and export resolvers
@@ -135,7 +136,7 @@ exports.mounts = () => {
     '--no-pager',
     '--type=mount'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -148,7 +149,7 @@ exports.automounts = () => {
     '--no-pager',
     '--type=automount'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -161,7 +162,7 @@ exports.swaps = () => {
     '--no-pager',
     '--type=swap'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -174,7 +175,7 @@ exports.targets = () => {
     '--no-pager',
     '--type=target'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -187,7 +188,7 @@ exports.paths = () => {
     '--no-pager',
     '--type=path'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -200,7 +201,7 @@ exports.timers = () => {
     '--no-pager',
     '--type=timer'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -213,7 +214,7 @@ exports.slices = () => {
     '--no-pager',
     '--type=slice'
   ]);
-  
+
   return unitListParser(result.stdout);
 };
 
@@ -228,4 +229,31 @@ exports.scopes = () => {
   ]);
   
   return unitListParser(result.stdout);
+};
+
+exports.blame = () => {
+  const result = systemdAnalyze(['blame']);
+  const units = result.stdout.trim().split('\n').map(line => {
+    const cols = line.trim().split(/\s+/);
+    const timeStr = cols[0];
+    const prefix = timeStr.match(/\D+$/)[0];
+
+    /**
+     * Convert time to milliseconds.
+     */
+
+    let time
+    if (prefix === 'ms') {
+      time = parseInt(timeStr.replace(/\D/g, ''));
+    } else if (prefix === 's') {
+      time = parseInt(parseFloat(timeStr.replace(/\D+$/, '')) * 1000);
+    }
+
+    return {
+      timeToInitialize: time,
+      name: cols[1]
+    };
+  })
+
+  return units;
 };
