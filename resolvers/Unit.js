@@ -10,7 +10,7 @@ const systemctl = require('../helpers/systemctl');
 
 exports.status = (parent, args) => {
   try {
-    const result = systemctl(['set-default', parent.name]);
+    const result = systemctl(['status', parent.name]);
 
     const res = {};
     res['statusCode'] = result.status;
