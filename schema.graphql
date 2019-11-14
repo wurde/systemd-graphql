@@ -31,6 +31,7 @@ enum ServiceType {
 The root Query type.
 """
 type Query {
+  test: UnitType!
   """
   General information.
   """

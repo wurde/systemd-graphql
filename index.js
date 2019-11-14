@@ -37,10 +37,10 @@ if (!pidof('/sbin/init').includes(pidof('systemd').pop())) {
 const resolvers = {
   Query: require('./resolvers/Query'),
   Mutation: require('./resolvers/Mutation'),
-  ServiceType: require('./resolvers/ServiceType'),
+  // ServiceType: require('./resolvers/ServiceType'),
   Unit: require('./resolvers/Unit'),
   UnitStatus: require('./resolvers/UnitStatus'),
-  UnitType: require('./resolvers/UnitType'),
+  // UnitType: require('./resolvers/UnitType'),
 };
 
 /**
