@@ -91,6 +91,10 @@ type Query {
   List swaps that systemd currently has in memory.
   """
   swaps: [Unit!]!
+  """
+  List targets that systemd currently has in memory.
+  """
+  targets: [Unit!]!
 }
 
 """
