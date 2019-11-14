@@ -8,6 +8,14 @@ const systemctl = require('../helpers/systemctl');
  * Define and export resolvers
  */
 
+exports.name = parent => {
+  return parent.name;
+};
+
+exports.type = parent => {
+  return parent.type;
+};
+
 exports.status = (parent, args) => {
   try {
     const result = systemctl(['status', parent.name]);
