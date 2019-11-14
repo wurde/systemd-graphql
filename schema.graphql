@@ -99,6 +99,10 @@ type Query {
   List paths that systemd currently has in memory.
   """
   paths: [Unit!]!
+  """
+  List timers that systemd currently has in memory.
+  """
+  timers: [Unit!]!
 }
 
 """
