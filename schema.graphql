@@ -67,6 +67,10 @@ type Query {
   List units that systemd currently has in memory.
   """
   units: [Unit!]!
+  """
+  Query the systemd journal
+  """
+  # journal: [JournalEntry!]!
 }
 
 """
