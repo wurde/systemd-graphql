@@ -1,7 +1,7 @@
 """
-
+All unit types.
 """
-enum UnitTypes {
+enum UnitType {
   SERVICE
   SOCKET
   DEVICE
@@ -16,9 +16,9 @@ enum UnitTypes {
 }
 
 """
-
+All service unit sub-types.
 """
-enum ServiceTypes {
+enum ServiceType {
   SIMPLE
   FORKING
   ONESHOT
@@ -176,7 +176,7 @@ A systemd Unit type.
 """
 type Unit {
   name: String!
-  type: String!
+  type: UnitType!
   status: UnitStatus!
   dependencies: [Unit!]!
 }
