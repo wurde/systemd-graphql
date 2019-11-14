@@ -31,7 +31,6 @@ enum ServiceType {
 The root Query type.
 """
 type Query {
-  test: UnitType!
   """
   General information.
   """
@@ -178,8 +177,8 @@ A systemd Unit type.
 type Unit {
   name: String!
   type: UnitType!
-  # status: UnitStatus!
-  # dependencies: [Unit!]!
+  status: UnitStatus
+  dependencies: [Unit]
 }
 
 """

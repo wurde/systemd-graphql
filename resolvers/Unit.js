@@ -2,8 +2,8 @@
  * Define and export resolvers
  */
 
-exports.type = () => {
-  return 'unit';
+exports.type = (parent) => {
+  return parent.type;
 };
 
 exports.dependencies = () => {

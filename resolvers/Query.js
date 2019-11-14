@@ -2,6 +2,7 @@
  * Dependencies
  */
 
+const path = require('path');
 const child_process = require('child_process');
 
 /**
@@ -95,17 +96,22 @@ exports.isEnabled = (parent, args) => {
   return result.status;
 };
 
-exports.units = (parent, args) => {
+exports.units = () => {
   const result = child_process.spawnSync(
     'systemctl',
     ['list-units', '--full', '--plain', '--no-legend', '--no-pager'],
     { encoding: 'utf8' }
   );
 
-  const units = result.stdout.split('\n').map(unitLine => {
-    return unitLine.split(/\s+/);
-  });
-  console.log('units', units);
+  const unitList = result.stdout.trim().split('\n').map(unitLine => {
+    const cols = unitLine.split(/\s+/);
+    const type = path.extname(cols[0]).toUpperCase().replace('.', '');
 
-  return [];
+    return {
+      name: cols[0],
+      type: type,
+    }
+  });
+
+  return unitList;
 };
