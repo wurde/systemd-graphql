@@ -95,6 +95,10 @@ type Query {
   List targets that systemd currently has in memory.
   """
   targets: [Unit!]!
+  """
+  List paths that systemd currently has in memory.
+  """
+  paths: [Unit!]!
 }
 
 """
