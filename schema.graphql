@@ -71,6 +71,10 @@ type Query {
   List services that systemd currently has in memory.
   """
   services: [Unit!]!
+  """
+  List sockets that systemd currently has in memory.
+  """
+  sockets: [Unit!]!
 }
 
 """
