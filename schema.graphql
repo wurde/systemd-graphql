@@ -175,10 +175,18 @@ type Mutation {
 A systemd Unit type.
 """
 type Unit {
+  """
+  Unique name of a unit.
+  """
   name: String!
+  """
+  Type of the unit.
+  """
   type: UnitType!
+  """
+  The status of a unit.
+  """
   status: UnitStatus!
-  dependencies: [Unit]
 }
 
 """
