@@ -1,6 +1,6 @@
 # systemd-graphql
 
-A GraphQL API for [systemd](https://github.com/systemd/systemd).
+A GraphQL API for systemd. A unified abstraction layer for the many APIs of systemd. Developers get a single endpoint to send requests and powerful schema introspection.
 
 ## Getting started
 
