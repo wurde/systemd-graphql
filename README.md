@@ -1,6 +1,6 @@
 # systemd-graphql
 
-A GraphQL API for systemd. A unified abstraction layer for the many APIs of systemd. Developers get a single endpoint to send requests and powerful schema introspection.
+A GraphQL API for systemd - a popular System and Service Manager for linux. It provides a unified abstraction layer for the many APIs of systemd. Developers get a single endpoint to send requests and powerful schema introspection.
 
 ## Getting started
 
