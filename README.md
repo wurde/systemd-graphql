@@ -14,26 +14,7 @@ sudo npm start
 
 ## Examples
 
-Get the status of a service.
-
-```
-query {
-  status(pattern: 'docker.service') {
-    loadState
-    activeState
-    mainPid
-  }
-}
-//=> {
-//=>   "data": {
-//=>     "status": {
-//=>       "loadState": "loaded",
-//=>       "activeState": true,
-//=>       "mainPid": 22229
-//=>     }
-//=>   }
-//=> }
-```
+- [Service Status](./examples/service-status.graphql)
 
 ## License
 
