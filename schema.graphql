@@ -28,6 +28,24 @@ enum ServiceType {
 }
 
 """
+All journal output types.
+"""
+enum JournalOutputType {
+  SHORT
+  SHORT_FULL
+  SHORT_ISO
+  SHORT_ISO_PRECISE
+  SHORT_ISO_MONOTONIC
+  SHORT_ISO_UNIX
+  VERBOSE
+  EXPORT
+  JSON
+  JSON_PRETTY
+  JSON_SSE
+  CAT
+}
+
+"""
 The root Query type.
 """
 type Query {
@@ -115,6 +133,10 @@ type Query {
   List all running units ordered by the time they took to initialize.
   """
   blame: [Unit!]!
+  """
+  Query the systemd journal.
+  """
+  journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [JournalEntries!]!
 }
 
 """
