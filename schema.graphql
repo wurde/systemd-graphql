@@ -1,4 +1,9 @@
 """
+Custom scalar Date type.
+"""
+scalar Date
+
+"""
 All unit types.
 """
 enum UnitType {
