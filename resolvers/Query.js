@@ -10,6 +10,10 @@ const systemdAnalyze = require('../helpers/systemdAnalyze');
  * Define and export resolvers
  */
 
+exports.now = () => {
+  return new Date().toISOString().slice(0, 10);
+};
+
 exports.hi = (parent, args) => {
   return args.message;
 };

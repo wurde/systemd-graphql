@@ -59,10 +59,11 @@ enum JournalOutputType {
 The root Query type.
 """
 type Query {
+  now: Date!
   """
   Welcome message.
   """
-  hi(message: String! = "Hi"): String!
+  hi(message: String = "Hi"): String!
   """
   General information.
   """
