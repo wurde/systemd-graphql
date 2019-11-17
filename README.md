@@ -14,7 +14,16 @@ sudo npm start
 
 ## Examples
 
-- [Service Status](./examples/service-status.graphql)
+- [List services](./examples/list-services.graphql)
+- [Get service status](./examples/service-status.graphql)
+- [Start, stop, and restart a service](./examples/start-stop-restart.graphql)
+- [Add a new service](./examples/add-service.graphql)
+- [Edit a service](./examples/edit-service.graphql)
+- [Schedule multiple timers](./examples/schedule-timers.graphql)
+- [Reload systemd](./examples/reload-systemd.graphql)
+- [Fetch journal logs](./examples/fetch-journal.graphql)
+- [Boot-up performance statistics](./examples/boot-stats.graphql)
+- [System restart](./examples/system-restart.graphql)
 
 ## License
 
