@@ -3,3 +3,8 @@
 mutation SystemdReload {
   daemonReload
 }
+#=> {
+#=>   "data": {
+#=>     "daemonReload": 0
+#=>   }
+#=> }
