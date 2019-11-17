@@ -11,3 +11,37 @@ query ListServices {
     }
   }
 }
+#=> {
+#=>   "data": {
+#=>     "services": [
+#=>       {
+#=>         "name": "accounts-daemon.service",
+#=>         "status": {
+#=>           "statusCode": 0,
+#=>           "loadState": "loaded",
+#=>           "activeState": "active",
+#=>           "mainPid": 1152
+#=>         }
+#=>       },
+#=>       {
+#=>         "name": "acpid.service",
+#=>         "status": {
+#=>           "statusCode": 0,
+#=>           "loadState": "loaded",
+#=>           "activeState": "active",
+#=>           "mainPid": 1162
+#=>         }
+#=>       },
+#=>       {
+#=>         "name": "alsa-restore.service",
+#=>         "status": {
+#=>           "statusCode": 0,
+#=>           "loadState": "loaded",
+#=>           "activeState": "active",
+#=>           "mainPid": 1186
+#=>         }
+#=>       },
+#=>       ...
+#=>     ]
+#=>   }
+#=> }

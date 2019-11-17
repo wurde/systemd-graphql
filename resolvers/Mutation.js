@@ -8,8 +8,6 @@ const systemctl = require('../helpers/systemctl');
  * Define and export resolvers
  */
 
-exports.daemonReload = () => systemctl(['daemon-reload']).status;
-
 exports.setDefault = (parent, args) => {
   return systemctl(['set-default', args.pattern]).status;
 };
@@ -48,6 +46,7 @@ exports.reboot = () => systemctl(['reboot']).status;
 exports.suspend = () => systemctl(['suspend']).status;
 exports.hibernate = () => systemctl(['hibernate']).status;
 exports.hybridSleep = () => systemctl(['hybrid-sleep']).status;
+exports.daemonReload = () => systemctl(['daemon-reload']).status;
 
 exports.enable = (parent, args) => {
   return systemctl(['enable', args.pattern]).status;

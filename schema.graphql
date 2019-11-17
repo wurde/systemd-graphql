@@ -122,10 +122,6 @@ The root Mutation type.
 """
 type Mutation {
   """
-  Reload the systemd manager configuration. Returns the exit code of the process.
-  """
-  daemonReload: Int!
-  """
   Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit. Returns the exit code of the process.
   """
   setDefault(name: String!): Int!
