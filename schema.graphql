@@ -4,6 +4,11 @@ Custom scalar Date type.
 scalar Date
 
 """
+Custom scalar JSON type.
+"""
+scalar JSON
+
+"""
 All unit types.
 """
 enum UnitType {
@@ -54,6 +59,10 @@ enum JournalOutputType {
 The root Query type.
 """
 type Query {
+  """
+  Welcome message.
+  """
+  hi(message: String! = "Hi"): String!
   """
   General information.
   """
@@ -141,7 +150,7 @@ type Query {
   """
   Query the systemd journal.
   """
-  journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [JournalEntries!]!
+  journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [JournalEntry!]!
 }
 
 """
@@ -288,4 +297,12 @@ type UnitStatus {
   Main process ID for the unit.
   """
   mainPid: Int
+}
+
+"""
+A journal entry as written by systemd-journald.service.
+"""
+type JournalEntry {
+  string: String!
+  json: JSON
 }

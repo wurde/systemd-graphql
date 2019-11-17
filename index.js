@@ -39,6 +39,8 @@ const resolvers = {
   Mutation: require('./resolvers/Mutation'),
   Unit: require('./resolvers/Unit'),
   UnitStatus: require('./resolvers/UnitStatus'),
+  Date: require('./resolvers/Date'),
+  JSON: require('./resolvers/JSON'),
 };
 
 /**

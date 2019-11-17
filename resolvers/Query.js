@@ -10,6 +10,10 @@ const systemdAnalyze = require('../helpers/systemdAnalyze');
  * Define and export resolvers
  */
 
+exports.hi = (parent, args) => {
+  return args.message;
+};
+
 exports.info = () => {
   return 'This is a GraphQL API for systemd.';
 };
