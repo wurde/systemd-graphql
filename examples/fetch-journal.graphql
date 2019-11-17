@@ -1,1 +1,10 @@
 # Fetch journal logs.
+
+query FetchJournal {
+  journal(
+    unit: "systemd-logind.service"
+    since: "2019-11-15"
+    lines: 20
+    output: "json"
+  )
+}

@@ -1,0 +1,27 @@
+# Add multiple units.
+
+mutation AddUnits {
+  addLogrotateService: addUnit(
+    name: "logrotate.service"
+    contents: """
+      [Unit]
+      Description=Clean non existent log file entries from status file
+
+      [Service]
+      ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
+    """
+  )
+  addLogrotateTimer: addUnit(
+    name: "logrotate.timer"
+    contents: """
+      [Unit]
+      Description=Start cleaning non existent log file entries from status file
+
+      [Timer]
+      OnCalendar=daily
+
+      [Install]
+      WantedBy=timers.target
+    """
+  )
+}

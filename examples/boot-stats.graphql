@@ -6,3 +6,22 @@ query BootStats {
     name
   }
 }
+#=> {
+#=>   "data": {
+#=>     "blame": [
+#=>       {
+#=>         "timeToInitialize": 12945,
+#=>         "name": "apt-daily.service"
+#=>       },
+#=>       {
+#=>         "timeToInitialize": 12202,
+#=>         "name": "snap.lxd.activate.service"
+#=>       },
+#=>       {
+#=>         "timeToInitialize": 6166,
+#=>         "name": "NetworkManager-wait-online.service"
+#=>       },
+#=>       ... 
+#=>     ]
+#=>   }
+#=> }

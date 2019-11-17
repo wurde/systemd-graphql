@@ -1,0 +1,26 @@
+# Edit multiple units.
+
+mutation EditUnits {
+  editWeb1Service: editUnit(
+    name: "web1.service"
+    contents: """
+      [Service]
+      Restart=always
+      RestartSec=15
+    """
+  )
+  editLogrotateTimer: editUnit(
+    name: "logrotate.timer"
+    contents: """
+    [Unit]
+    Description=Start cleaning non existent log file entries from status file
+
+    [Timer]
+    OnCalendar=weekly
+
+    [Install]
+    WantedBy=timers.target
+    """
+    full: true
+  )
+}
