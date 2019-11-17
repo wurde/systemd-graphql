@@ -1,1 +1,8 @@
 # Boot-up performance statistics.
+
+query BootStats {
+  blame {
+    timeToInitialize
+    name
+  }
+}

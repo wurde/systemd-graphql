@@ -1,18 +1,20 @@
 # Get the status of a service.
 
-query {
-  status(pattern: 'docker.service') {
+query FirewallStatus {
+  status(pattern: "ufw.service") {
+    statusCode
     loadState
     activeState
-    mainPid
+  	mainPid
   }
 }
 #=> {
 #=>   "data": {
 #=>     "status": {
+#=>       "statusCode": 0,
 #=>       "loadState": "loaded",
-#=>       "activeState": true,
-#=>       "mainPid": 22229
+#=>       "activeState": "active",
+#=>       "mainPid": 297
 #=>     }
 #=>   }
 #=> }

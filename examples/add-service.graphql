@@ -1,2 +1,21 @@
 # Add a service.
 
+mutation AddHelloService {
+  addService(
+    name: "hello"
+    contents: "[Unit]\nDescription=Hello world app.\n\n[Service]\nType=oneshot\nExecStart=/bin/echo Hello, world!"
+  )
+}
+
+mutation AddHelloService {
+  addService(
+    name: "hello",
+    contents: """
+      [Unit]
+      Description=Hello world app.
+
+      [Service]
+      Type=oneshot
+      ExecStart=/bin/echo Hello, world!
+  """)
+}

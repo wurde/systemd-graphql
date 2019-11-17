@@ -23,7 +23,7 @@ sudo npm start
 - [Reload systemd](./examples/reload-systemd.graphql)
 - [Fetch journal logs](./examples/fetch-journal.graphql)
 - [Boot-up performance statistics](./examples/boot-stats.graphql)
-- [System restart](./examples/system-restart.graphql)
+- [System reboot](./examples/system-reboot.graphql)
 
 ## License
 

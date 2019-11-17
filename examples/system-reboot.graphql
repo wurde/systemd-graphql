@@ -1,0 +1,5 @@
+# System reboot.
+
+mutation SystemReboot {
+  reboot
+}

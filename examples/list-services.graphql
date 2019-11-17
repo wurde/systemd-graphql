@@ -1,1 +1,13 @@
 # List services.
+
+query ListServices {
+  services {
+    name
+    status {
+      statusCode
+      loadState
+      activeState
+      mainPid
+    }
+  }
+}
