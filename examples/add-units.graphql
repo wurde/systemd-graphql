@@ -25,3 +25,11 @@ mutation AddUnits {
     """
   )
 }
+#=> {
+#=>   "data": {
+#=>     "status": {
+#=>       "addLogrotateService": true,
+#=>       "addLogrotateTimer": true
+#=>     }
+#=>   }
+#=> }

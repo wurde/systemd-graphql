@@ -255,9 +255,13 @@ type Mutation {
   """
   daemonReload: Int!
   """
-  Add a Unit. This does not enable or start the unit.  Returns true if the unit is added, false otherwise.
+  Add a Unit. This does not enable or start the unit. Returns true if the unit is added, false otherwise.
   """
   addUnit(name: String!, content: String!): Boolean!
+  """
+  Remove a Unit. This does not stop or disable the unit. Returns true if the unit is removed, false otherwise.
+  """
+  removeUnit(name: String!): Boolean!
 }
 
 """
