@@ -21,6 +21,11 @@ mutation EditUnits {
     [Install]
     WantedBy=timers.target
     """
-    full: true
   )
 }
+#=> {
+#=>   "data": {
+#=>     "editWeb1Service": true,
+#=>     "editLogrotateTimer": true
+#=>   }
+#=> }
