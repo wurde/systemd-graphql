@@ -3,6 +3,7 @@
  */
 
 const systemctl = require('../helpers/systemctl');
+const journalctl = require('../helpers/journalctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -254,4 +255,28 @@ exports.blame = () => {
   })
 
   return units;
+};
+
+exports.journal = (parent, args) => {
+  const inputArgs = ['--no-pager']
+
+  if (args.unit) {
+    inputArgs.push(`--unit=${args.unit}`)
+  }
+  if (args.since) {
+    inputArgs.push(`--since=${args.since}`)
+  }
+  if (args.lines) {
+    inputArgs.push(`--lines=${args.lines}`)
+  }
+  if (args.output) {
+    inputArgs.push(`--output=${args.output.toLowerCase()}`)
+  }
+  
+  const lines = journalctl(inputArgs)
+    .stdout.trim()
+    .split('\n')
+    .filter(line => !line.startsWith('--'));
+
+  return lines;
 };

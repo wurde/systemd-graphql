@@ -151,7 +151,7 @@ type Query {
   """
   Query the systemd journal.
   """
-  journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [JournalEntry!]!
+  journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!
 }
 
 """
@@ -298,12 +298,4 @@ type UnitStatus {
   Main process ID for the unit.
   """
   mainPid: Int
-}
-
-"""
-A journal entry as written by systemd-journald.service.
-"""
-type JournalEntry {
-  string: String!
-  json: JSON
 }

@@ -3,7 +3,7 @@
  */
 
 exports.parseValue = (value) => {
-  return new Date(value);
+  return new Date(value).toISOString().slice(0, 10);
 }
 
 exports.serialize = (value) => {
