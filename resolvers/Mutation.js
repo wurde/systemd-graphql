@@ -2,7 +2,15 @@
  * Dependencies
  */
 
+const fs = require('fs');
+const path = require('path');
 const systemctl = require('../helpers/systemctl');
+
+/**
+ * Constants
+ */
+
+const ETC_DIR  = '/etc/systemd/system';
 
 /**
  * Define and export resolvers
@@ -80,4 +88,12 @@ exports.revert = (parent, args) => {
 
 exports.link = (parent, args) => {
   return systemctl(['link', args.path]).status;
+};
+
+exports.addUnit = (parent, args) => {
+  const unitPath = path.join(ETC_DIR, args.name);
+  if (fs.existsSync(unitPath)) return false;
+
+  fs.writeFileSync(unitPath, args.content, { encoding: 'utf8' });
+  return fs.existsSync(unitPath);
 };

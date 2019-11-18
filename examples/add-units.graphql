@@ -2,7 +2,7 @@
 
 mutation AddUnits {
   addLogrotateService: addUnit(
-    name: "logrotate.service"
+    name: "logrotate.service",
     contents: """
       [Unit]
       Description=Clean non existent log file entries from status file
@@ -12,7 +12,7 @@ mutation AddUnits {
     """
   )
   addLogrotateTimer: addUnit(
-    name: "logrotate.timer"
+    name: "logrotate.timer",
     contents: """
       [Unit]
       Description=Start cleaning non existent log file entries from status file
