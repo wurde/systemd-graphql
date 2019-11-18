@@ -16,6 +16,8 @@
   "author": "Andy Bettisworth",
   "license": "MIT",
   "dependencies": {
+    "aws-lambda": "^0.1.2",
+    "graphql": "^0.13.2",
     "graphql-yoga": "^1.18.3"
   },
   "devDependencies": {

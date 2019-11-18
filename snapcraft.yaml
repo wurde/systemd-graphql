@@ -1,0 +1,24 @@
+name: systemd-graphql
+summary: A GraphQL API for systemd
+description: |
+  A GraphQL API for systemd - a popular System and Service Manager for linux. It provides a unified abstraction layer for the many APIs of systemd. Developers get a single endpoint to send requests and powerful schema introspection.
+version: git
+base: core18
+license: MIT
+confinement: classic
+grade: stable
+
+parts:
+  systemd-graphql:
+    plugin: nodejs
+    nodejs-version: 12.13.0
+    nodejs-package-manager: npm
+    source: .
+    build-packages:
+    - nodejs
+    - npm
+    - unzip
+
+apps:
+  systemd-graphql:
+    command: index
