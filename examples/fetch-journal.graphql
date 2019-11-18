@@ -3,8 +3,18 @@
 query FetchJournal {
   journal(
     unit: "systemd-logind.service"
-    since: "2019-11-15"
-    lines: 20
-    output: "json"
+    since: "2019-10-01"
+    lines: 4
+    output: SHORT
   )
 }
+#=> {
+#=>   "data": {
+#=>     "journal": [
+#=>       "Oct 01 04:48:40 solace-galagapro systemd-logind[1161]: Lid closed.",
+#=>       "Oct 01 04:48:40 solace-galagapro systemd-logind[1161]: Suspending...",
+#=>       "Oct 01 09:57:12 solace-galagapro systemd-logind[1161]: Lid opened.",
+#=>       "Oct 01 09:57:12 solace-galagapro systemd-logind[1161]: Operation 'sleep' finished."
+#=>     ]
+#=>   }
+#=> }
