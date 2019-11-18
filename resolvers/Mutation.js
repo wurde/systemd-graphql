@@ -100,6 +100,16 @@ exports.addUnit = (parent, args) => {
   return fs.existsSync(unitPath);
 };
 
+exports.editUnit = (parent, args) => {
+  const unitPath = path.join(ETC_DIR, args.name);
+  if (!fs.existsSync(unitPath)) return false;
+
+  fs.writeFileSync(unitPath, args.content, { encoding: 'utf8' });
+  systemctl(['daemon-reload']);
+
+  return fs.existsSync(unitPath);
+};
+
 exports.removeUnit = (parent, args) => {
   const unitPath = path.join(ETC_DIR, args.name);
   if (!fs.existsSync(unitPath)) return false;

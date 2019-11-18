@@ -259,6 +259,10 @@ type Mutation {
   """
   addUnit(name: String!, content: String!): Boolean!
   """
+  Edit a Unit. This does not enable or start the unit. Returns true if the unit is added, false otherwise.
+  """
+  editUnit(name: String!, content: String!): Boolean!
+  """
   Remove a Unit. This does not stop or disable the unit. Returns true if the unit is removed, false otherwise.
   """
   removeUnit(name: String!): Boolean!
