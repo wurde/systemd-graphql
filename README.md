@@ -14,15 +14,73 @@ sudo npm start
 
 ## Examples
 
-- [List services](./examples/list-services.graphql)
-- [Get service status](./examples/service-status.graphql)
-- [Start, stop, and restart services](./examples/start-stop-restart.graphql)
-- [Add multiple units](./examples/add-units.graphql)
-- [Edit multiple units](./examples/edit-units.graphql)
-- [Reload systemd](./examples/reload-systemd.graphql)
-- [Fetch journal logs](./examples/fetch-journal.graphql)
-- [Boot-up performance statistics](./examples/boot-stats.graphql)
-- [System reboot](./examples/system-reboot.graphql)
+### System Management (`systemctl`)
+
+- TODO add systemd.network unit support.
+- [List services](./examples/services/list-services.graphql)
+- [Get service status](./examples/services/service-status.graphql)
+- [Start, stop, and restart services](./examples/services/start-stop-restart.graphql)
+- [Add multiple units](./examples/services/add-units.graphql)
+- [Edit multiple units](./examples/services/edit-units.graphql)
+- [Reload systemd](./examples/services/reload-systemd.graphql)
+- [Fetch journal logs](./examples/services/fetch-journal.graphql)
+- [Boot-up performance statistics](./examples/services/boot-stats.graphql)
+- [System reboot](./examples/services/system-reboot.graphql)
+
+### Login Management (`loginctl`)
+
+- [List sessions](./examples/sessions/list-sessions.graphql)
+- [Lock and unlock sessions](./examples/sessions/lock-sessions.graphql)
+- [Show user status](./examples/sessions/user-status.graphql)
+- [Terminate user session](./examples/sessions/terminate-session.graphql)
+
+### Hostname Management (`hostnamectl`)
+
+- [Show hostname status](./examples/hostname/hostname-status.graphql)
+- [Set hostname](./examples/hostname/set-hostname.graphql)
+- [Set deployment environment](./examples/hostname/set-deployment-env.graphql)
+- [Set chasis type](./examples/hostname/set-chasis-type.graphql)
+- [Set machine location](./examples/hostname/set-machine-location.graphql)
+
+### Locale Management (`localectl`)
+
+- [Get locale status](./examples/locale/get-locale-status.graphql)
+- [List available locales](./examples/locale/list-locales.graphql)
+- [Set locale](./examples/locale/set-locale.graphql)
+- [Set keyboard layout](./examples/locale/set-keyboard-layout.graphql)
+
+### Boot Management (`bootctl`)
+
+- [Get boot loader status](./examples/boot/get-bootloader-status.graphql)
+- [Update boot loader](./examples/boot/update-bootloader.graphql)
+
+### Time/Date Management (`timedatectl`)
+
+- [Show system clock settings](./examples/time/sys-clock-status.graphql)
+- [Set current time and timezone](./examples/time/set-current-timezone.graphql)
+
+### Network Management (`networkctl`)
+
+- [List networks](./examples/network/list-networks.graphql)
+- [Show network status](./examples/network/network-status.graphql)
+
+### PulseAudio Management (`pactl`)
+
+- [Play audio sample](./examples/pulse-audio/play-audio-sample.graphql)
+- [Mute input source](./examples/pulse-audio/mute-input-source.graphql)
+
+### D-BUS Management (`busctl`)
+
+- [Show peers on bus](./examples/d-bus/show-peers-on-bus.graphql)
+- [Capture service messages](./examples/d-bus/capture-service-messages.graphql)
+- [Monitor all messages](./examples/d-bus/monitor-all-messages.graphql)
+
+### Disk Management (`udisksctl`)
+
+- [Get disk status](./examples/disk/get-disk-status.graphql)
+- [Mount a disk](./examples/disk/mount-disk.graphql)
+- [Lock a disk](./examples/disk/lock-disk.graphql)
+- [Setup a loop device](./examples/disk/setup-loop-device.graphql)
 
 ## License
 
