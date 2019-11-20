@@ -2,12 +2,15 @@
   "name": "systemd-graphql",
   "version": "0.2.0",
   "description": "A GraphQL API for systemd.",
-  "main": "index.js",
+  "main": "bin/server.js",
   "private": true,
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon index.js",
     "test": "jest"
+  },
+  "bin": {
+    "systemd-graphql-server": "./bin/server.js"
   },
   "keywords": [
     "graphql",
