@@ -16,7 +16,6 @@ sudo npm start
 
 ### System Management (`systemctl`)
 
-- TODO add systemd.network unit support.
 - [List services](./examples/services/list-services.graphql)
 - [Get service status](./examples/services/service-status.graphql)
 - [Start, stop, and restart services](./examples/services/start-stop-restart.graphql)
