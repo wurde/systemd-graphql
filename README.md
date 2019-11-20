@@ -18,7 +18,7 @@ sudo npm start
 - [Get service status](./examples/service-status.graphql)
 - [Start, stop, and restart services](./examples/start-stop-restart.graphql)
 - [Add multiple units](./examples/add-units.graphql)
-- [Edit a service](./examples/edit-service.graphql)
+- [Edit multiple units](./examples/edit-units.graphql)
 - [Reload systemd](./examples/reload-systemd.graphql)
 - [Fetch journal logs](./examples/fetch-journal.graphql)
 - [Boot-up performance statistics](./examples/boot-stats.graphql)
