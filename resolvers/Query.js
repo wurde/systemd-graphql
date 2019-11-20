@@ -33,7 +33,7 @@ exports.isSystemRunning = () => {
   return result.stdout.trim();
 };
 
-exports.status = (parent, args) => {
+exports.unitStatus = (parent, args) => {
   try {
     const result = systemctl(['status', args.pattern]);
 

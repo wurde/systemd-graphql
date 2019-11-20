@@ -79,7 +79,7 @@ type Query {
   """
   Terse runtime status information about a unit.
   """
-  status(pattern: String!): UnitStatus!
+  unitStatus(pattern: String!): UnitStatus!
   """
   Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to.
   """

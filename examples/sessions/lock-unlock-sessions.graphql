@@ -1,0 +1,6 @@
+# Lock and unlock sessions.
+
+mutation LockUnlockSessions {
+  lockSession(id: 2)
+  unlockSession(id: 3)
+}

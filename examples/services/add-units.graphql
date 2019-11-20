@@ -27,7 +27,7 @@ mutation AddUnits {
 }
 #=> {
 #=>   "data": {
-#=>     "status": {
+#=>     "AddUnits": {
 #=>       "addLogrotateService": true,
 #=>       "addLogrotateTimer": true
 #=>     }

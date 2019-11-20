@@ -29,7 +29,7 @@ sudo npm start
 ### Login Management (`loginctl`)
 
 - [List sessions](./examples/sessions/list-sessions.graphql)
-- [Lock and unlock sessions](./examples/sessions/lock-sessions.graphql)
+- [Lock and unlock sessions](./examples/sessions/lock-unlock-sessions.graphql)
 - [Show user status](./examples/sessions/user-status.graphql)
 - [Terminate user session](./examples/sessions/terminate-session.graphql)
 

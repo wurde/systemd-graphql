@@ -1,0 +1,15 @@
+# List sessions.
+
+query ListSessions {
+  sessions {
+    id
+    user {
+      uid
+      name
+    }
+    seat {
+      id
+    }
+    tty
+  }
+}

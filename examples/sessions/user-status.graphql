@@ -1,0 +1,25 @@
+# Show user status.
+
+query UserStatus {
+  userStatus {
+    uid
+    gid
+    timestamp
+    service {
+      name
+      statusCode
+      loadState
+      activeState
+      mainPid
+    }
+    slice {
+      name
+      statusCod
+      loadState
+      activeStatee
+      mainPid
+    }
+    state
+    linger
+  }
+}

@@ -1,0 +1,5 @@
+# Terminate user session.
+
+mutation TerminateSession {
+  terminateSession(id: 2)
+}

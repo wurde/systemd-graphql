@@ -1,7 +1,7 @@
 # Get the status of a service.
 
 query FirewallStatus {
-  status(pattern: "ufw.service") {
+  unitStatus(pattern: "ufw.service") {
     statusCode
     loadState
     activeState
@@ -10,7 +10,7 @@ query FirewallStatus {
 }
 #=> {
 #=>   "data": {
-#=>     "status": {
+#=>     "unitStatus": {
 #=>       "statusCode": 0,
 #=>       "loadState": "loaded",
 #=>       "activeState": "active",
