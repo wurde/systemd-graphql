@@ -43,14 +43,14 @@ sudo npm start
 
 ### Locale Management (`localectl`)
 
-- [Get locale status](./examples/locale/get-locale-status.graphql)
+- [Get locale status](./examples/locale/locale-status.graphql)
 - [List available locales](./examples/locale/list-locales.graphql)
 - [Set locale](./examples/locale/set-locale.graphql)
 - [Set keyboard layout](./examples/locale/set-keyboard-layout.graphql)
 
 ### Boot Management (`bootctl`)
 
-- [Get boot loader status](./examples/boot/get-bootloader-status.graphql)
+- [Get boot loader status](./examples/boot/bootloader-status.graphql)
 - [Update boot loader](./examples/boot/update-bootloader.graphql)
 
 ### Time/Date Management (`timedatectl`)
@@ -76,7 +76,7 @@ sudo npm start
 
 ### Disk Management (`udisksctl`)
 
-- [Get disk status](./examples/disk/get-disk-status.graphql)
+- [Get disk status](./examples/disk/disk-status.graphql)
 - [Mount a disk](./examples/disk/mount-disk.graphql)
 - [Lock a disk](./examples/disk/lock-disk.graphql)
 - [Setup a loop device](./examples/disk/setup-loop-device.graphql)
