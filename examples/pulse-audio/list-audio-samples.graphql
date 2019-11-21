@@ -1,11 +1,64 @@
 # List audio samples.
 
 query ListAudioSamples {
-  listAudioSamples {
-    name
-    fileSize
-    duration
-    channelMap
-    sampleSpec
-  }
+  audioSamples
 }
+#=> {
+#=>   "data": {
+#=>     "audioSamples": [
+#=>       {
+#=>         "id": 0,
+#=>         "name": "bell.ogg",
+#=>         "sampleSpecification": "float32le 1ch 44100Hz",
+#=>         "channelMap": "mono",
+#=>         "volume": "(invalid)",
+#=>         "duration": "0.2s",
+#=>         "size": "34.5 KiB",
+#=>         "lazy": "no",
+#=>         "filename": "n/a",
+#=>         "mediaRole": "event",
+#=>         "mediaName": "bell.ogg",
+#=>         "applicationName": "pactl",
+#=>         "nativeProtocolPeer": "UNIX socket client",
+#=>         "nativeProtocolVersion": "32",
+#=>         "applicationProcessId": "2009",
+#=>         "applicationProcessUser": "wurde",
+#=>         "applicationProcessHost": "solace-galagapro",
+#=>         "applicationProcessBinary": "pactl",
+#=>         "applicationLanguage": "en_US.UTF-8",
+#=>         "windowX11Display": ":0",
+#=>         "applicationProcessMachineId": "c673bcb14ede48259d9d7e9473943433",
+#=>         "applicationProcessSessionId": "2"
+#=>       },
+#=>       {
+#=>         "id": 1,
+#=>         "name": "audio-volume-change",
+#=>         "sampleSpecification": "s16le 2ch 44100Hz",
+#=>         "channelMap": "front-left,front-right",
+#=>         "volume": "(invalid)",
+#=>         "duration": "0.1s",
+#=>         "size": "11.5 KiB",
+#=>         "lazy": "no",
+#=>         "filename": "n/a",
+#=>         "mediaRole": "event",
+#=>         "eventDescription": "volume changed through key press",
+#=>         "eventId": "audio-volume-change",
+#=>         "mediaName": "audio-volume-change",
+#=>         "mediaFilename": "/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga",
+#=>         "applicationName": "libcanberra",
+#=>         "nativeProtocolPeer": "UNIX socket client",
+#=>         "nativeProtocolVersion": "32",
+#=>         "applicationVersion": "0.30",
+#=>         "applicationId": "org.freedesktop.libcanberra",
+#=>         "applicationProcessId": "2024",
+#=>         "applicationProcessUser": "wurde",
+#=>         "applicationProcessHost": "solace-galagapro",
+#=>         "applicationProcessBinary": "gsd-media-keys",
+#=>         "applicationLanguage": "en_US.UTF-8",
+#=>         "windowX11Display": ":0",
+#=>         "applicationProcessMachineId": "c673bcb14ede48259d9d7e9473943433",
+#=>         "applicationProcessSessionId": "2"
+#=>       }
+#=>     ]
+#=>   }
+#=> }
