@@ -176,6 +176,10 @@ exports.updateBootLoader = (parent, args) => {
   return bootctl(['update']).status;
 };
 
+exports.installBootLoader = (parent, args) => {
+  return bootctl(['install']).status;
+};
+
 exports.removeBootLoader = (parent, args) => {
   return bootctl(['remove']).status;
 };
