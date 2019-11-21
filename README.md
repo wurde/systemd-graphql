@@ -61,7 +61,7 @@ sudo npm start
 ### Network Management (`networkctl`)
 
 - [List network links](./examples/network/list-network-links.graphql)
-- [Show network link status](./examples/network/network-status.graphql)
+- [Show network link status](./examples/network/network-link-status.graphql)
 
 ### PulseAudio Management (`pactl`)
 
