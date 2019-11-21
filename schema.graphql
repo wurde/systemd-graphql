@@ -287,6 +287,10 @@ type Mutation {
   """
   unlockSession(id: Int!): Int!
   """
+  Terminates a session. Returns the exit code of the process.
+  """
+  terminateSession(id: Int!): Int!
+  """
   Terminates all sessions of a user. This kills all processes of all sessions of the user and deallocates all runtime resources attached to the user. Returns the exit code of the process.
   """
   terminateUser(uid: Int!): Int!

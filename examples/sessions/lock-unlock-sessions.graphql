@@ -4,3 +4,9 @@ mutation LockUnlockSessions {
   lockSession(id: 2)
   unlockSession(id: 3)
 }
+#=> {
+#=>   "data": {
+#=>     "lockSession": 0,
+#=>     "unlockSession": 1
+#=>   }
+#=> }
