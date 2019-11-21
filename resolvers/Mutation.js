@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const systemctl = require('../helpers/systemctl');
+const loginctl = require('../helpers/loginctl');
 
 /**
  * Constants
@@ -118,4 +119,8 @@ exports.removeUnit = (parent, args) => {
   systemctl(['daemon-reload']);
 
   return !fs.existsSync(unitPath);
+};
+
+exports.terminateUser = (parent, args) => {
+  return loginctl(['terminate-user', args.uid]).status;
 };

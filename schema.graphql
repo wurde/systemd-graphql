@@ -274,6 +274,10 @@ type Mutation {
   Remove a Unit. This does not stop or disable the unit. Returns true if the unit is removed, false otherwise.
   """
   removeUnit(name: String!): Boolean!
+  """
+  Terminates all sessions of a user. This kills all processes of all sessions of the user and deallocates all runtime resources attached to the user. Returns the exit code of the process.
+  """
+  terminateUser(uid: Int!): Int!
 }
 
 """
