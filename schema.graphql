@@ -185,6 +185,10 @@ type Query {
   """
   hostname: JSON!
   """
+  Show current settings of the system locale and keyboard mapping.
+  """
+  locale: JSON!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!

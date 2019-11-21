@@ -6,6 +6,7 @@ const camelcase = require('camelcase');
 const systemctl = require('../helpers/systemctl');
 const journalctl = require('../helpers/journalctl');
 const loginctl = require('../helpers/loginctl');
+const localectl = require('../helpers/localectl');
 const hostnamectl = require('../helpers/hostnamectl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
@@ -354,6 +355,29 @@ exports.blame = () => {
 
 exports.hostname = (parent, args) => {
   let result = hostnamectl(["status"]);
+
+  if (result.status === 0) {
+    result = result.stdout
+      .trim()
+      .split('\n')
+      .reduce((obj, line) => {
+        const x = line.split(':');
+        obj[camelcase(x[0].trim())] = x[1].trim();
+        return obj;
+      }, {});
+  } else {
+    result = null;
+  }
+
+  if (result) {
+    return JSON.stringify(result);
+  } else {
+    return null;
+  }
+};
+
+exports.locale = (parent, args) => {
+  let result = localectl(["status"]);
 
   if (result.status === 0) {
     result = result.stdout
