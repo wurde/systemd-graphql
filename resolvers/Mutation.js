@@ -166,3 +166,7 @@ exports.setLocale = (parent, args) => {
 exports.setKeymap = (parent, args) => {
   return localectl(['set-keymap', args.name]).status;
 };
+
+exports.setX11Keymap = (parent, args) => {
+  return localectl(['set-x11-keymap', args.name]).status;
+};

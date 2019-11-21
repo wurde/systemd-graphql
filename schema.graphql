@@ -93,6 +93,10 @@ type Query {
   """
   isSystemRunning: String!
   """
+  Checks and prints the currently installed versions of the boot loader binaries and all current EFI boot variables.
+  """
+  bootLoaderStatus: BootLoaderStatus
+  """
   Show properties of a session or the manager itself. If no argument is specified, properties of the manager will be shown.
   """
   sessionStatus(id: Int): JSON
@@ -422,4 +426,22 @@ type UnitStatus {
   Main process ID for the unit.
   """
   mainPid: Int
+}
+
+"""
+The status of a boot loader.
+"""
+type BootLoaderStatus {
+  """
+  System boot information.
+  """
+  system: JSON
+  """
+  Current boot loader information.
+  """
+  currentLoader: JSON
+  """
+  Boot loader entries in EFI variables.
+  """
+  efiVariables: JSON
 }

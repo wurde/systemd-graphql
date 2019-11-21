@@ -1,5 +1,10 @@
 # Set keyboard layout.
 
 mutation SetKeyboardLayout {
-  setKeymap(name: "dvorak")
+  setX11Keymap(name: "us pc105 dvorak")
 }
+#=> {
+#=>   "data": {
+#=>     "setX11Keymap": 0
+#=>   }
+#=> }

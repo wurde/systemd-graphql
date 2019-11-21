@@ -8,6 +8,7 @@ const journalctl = require('../helpers/journalctl');
 const loginctl = require('../helpers/loginctl');
 const localectl = require('../helpers/localectl');
 const hostnamectl = require('../helpers/hostnamectl');
+const bootctl = require('../helpers/bootctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -35,6 +36,63 @@ exports.version = () => {
 exports.isSystemRunning = () => {
   const result = systemctl(['is-system-running']);
   return result.stdout.trim();
+};
+
+exports.bootLoaderStatus = (parent, args) => {
+  const result = bootctl(["status"]);
+  const lines = result.stdout.split('\n');
+
+  let system = []
+  let currentLoader = [];
+  let efiVariables = [];
+
+  let token = 0;
+  for (let i = 0; i < lines.length; i++) {
+    if (token === 1 && lines[i].length > 0) {
+      system.push(lines[i].trim());
+    }
+    if (token === 2 && lines[i].length > 0) {
+      currentLoader.push(lines[i].trim());
+    }
+    if (token === 3 && lines[i].length > 0) {
+      efiVariables.push(lines[i].trim());
+    }
+
+    if (lines[i].length === 0) {
+      token = 0;
+    }
+    if (lines[i].match('System:')) {
+      token = 1;
+    }
+    if (lines[i].match('Current Loader:')) {
+      token = 2;
+    }
+    if (lines[i].match('Boot Loader Entries in EFI Variables:')) {
+      token = 3;
+    }
+  }
+
+  system = system.reduce((obj, line) => {
+    const x = line.split(':');
+    obj[camelcase(x[0].trim())] = x[1].trim();
+    return obj;
+  }, {});
+  currentLoader = currentLoader.reduce((obj, line) => {
+    const x = line.split(':');
+    obj[camelcase(x[0].trim())] = x[1].trim();
+    return obj;
+  }, {});
+  efiVariables = efiVariables.reduce((obj, line) => {
+    const x = line.split(':');
+    obj[camelcase(x[0].trim())] = x[1].trim();
+    return obj;
+  }, {});
+
+  return {
+    system: JSON.stringify(system),
+    currentLoader: JSON.stringify(currentLoader),
+    efiVariables: JSON.stringify(efiVariables)
+  };
 };
 
 exports.sessionStatus = (parent, args) => {

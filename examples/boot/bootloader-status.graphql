@@ -2,7 +2,19 @@
 
 query BootLoaderStatus {
   bootLoaderStatus {
-    hasSecureBoot
     efiVariables
   }
 }
+#=> {
+#=>   "data": {
+#=>     "bootLoaderStatus": {
+#=>       "efiVariables": {
+#=>         "title": "ubuntu",
+#=>         "id": "0x0000",
+#=>         "status": "active, boot-order",
+#=>         "partition": "/dev/disk/by-partuuid/23ca4ee1-bc12-1c3a-9ca4-ee157f2f4573",
+#=>         "file": "└─/EFI/UBUNTU/SHIMX64.EFI"
+#=>       }
+#=>     }
+#=>   }
+#=> }
