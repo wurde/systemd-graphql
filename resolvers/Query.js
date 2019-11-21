@@ -40,6 +40,22 @@ exports.isSystemRunning = () => {
   return result.stdout.trim();
 };
 
+exports.networkLinkStatus = (parent, args) => {
+  let result = networkctl(['status', args.name])
+    .stdout.trim()
+    .split('\n');
+
+  result.shift() // Remove legend info
+
+  result = result.reduce((obj, line) => {
+    const x = line.split(':');
+    obj[camelcase(x[0].trim())] = x[1].trim();
+    return obj;
+  }, {});
+
+  return JSON.stringify(result);
+};
+
 exports.systemClockStatus = () => {
   let result = timedatectl(['status']);
 

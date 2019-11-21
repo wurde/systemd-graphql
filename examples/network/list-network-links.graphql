@@ -3,3 +3,30 @@
 query ListNetworkLinks {
   networkLinks
 }
+#=> {
+#=>   "data": {
+#=>     "networkLinks": [
+#=>       {
+#=>         "id": "1",
+#=>         "link": "lo",
+#=>         "type": "loopback",
+#=>         "operational": "n/a",
+#=>         "setup": "unmanaged"
+#=>       },
+#=>       {
+#=>         "id": "2",
+#=>         "link": "eth0",
+#=>         "type": "ether",
+#=>         "operational": "n/a",
+#=>         "setup": "unmanaged"
+#=>       },
+#=>       {
+#=>         "id": "3",
+#=>         "link": "wifi2",
+#=>         "type": "wlan",
+#=>         "operational": "n/a",
+#=>         "setup": "unmanaged"
+#=>       },
+#=>     ]
+#=>   }
+#=> }

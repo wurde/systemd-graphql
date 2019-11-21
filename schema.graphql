@@ -93,6 +93,10 @@ type Query {
   """
   isSystemRunning: String!
   """
+  Show information about a link: type, state, kernel module driver, hardware and IP address, configured DNS servers, etc.
+  """
+  networkLinkStatus(name: String!): JSON
+  """
   Show current settings of the system clock and RTC, including whether network time synchronization through systemd-timesyncd.service is active.
   """
   systemClockStatus: JSON
