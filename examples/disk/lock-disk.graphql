@@ -1,0 +1,5 @@
+# Lock a disk.
+
+mutation LockDisk {
+  lockDisk(device: "/dev/sdb")
+}

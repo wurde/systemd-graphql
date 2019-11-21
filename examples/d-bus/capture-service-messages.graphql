@@ -1,0 +1,5 @@
+# Capture service messages.
+
+subscription CaptureServiceMessages {
+  captureSericeMessages(name: "org.gtk.Settings", output: "setting-messages.pcap")
+}

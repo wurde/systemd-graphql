@@ -1,0 +1,5 @@
+# Monitor all messages.
+
+subscription MonitorServiceMessages {
+  monitorSericeMessages(output: "dbus-messages.csv")
+}

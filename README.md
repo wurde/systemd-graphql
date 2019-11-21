@@ -71,7 +71,7 @@ sudo npm start
 
 ### D-BUS Management (`busctl`)
 
-- [Show peers on bus](./examples/d-bus/show-peers-on-bus.graphql)
+- [List bus services](./examples/d-bus/list-bus-services.graphql)
 - [Capture service messages](./examples/d-bus/capture-service-messages.graphql)
 - [Monitor all messages](./examples/d-bus/monitor-all-messages.graphql)
 
@@ -80,7 +80,6 @@ sudo npm start
 - [Get disk status](./examples/disk/disk-status.graphql)
 - [Mount a disk](./examples/disk/mount-disk.graphql)
 - [Lock a disk](./examples/disk/lock-disk.graphql)
-- [Setup a loop device](./examples/disk/setup-loop-device.graphql)
 
 ## License
 

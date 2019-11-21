@@ -1,0 +1,13 @@
+# List bus services.
+
+query ListBusServices {
+  busServices {
+    name
+    pid
+    processName
+    user
+    connection
+    unit
+    sessionId
+  }
+}
