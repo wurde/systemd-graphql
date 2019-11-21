@@ -100,6 +100,26 @@ exports.isEnabled = (parent, args) => {
   return systemctl(['is-enabled', args.pattern]).status;
 };
 
+exports.sessions = () => {
+  let sessionList = loginctl(['list-sessions', '--no-legend', '--no-pager'])
+    .stdout.trim()
+    .split('\n').map(line => parseInt(line.split(' ')[0]));
+
+  sessionList = sessionList.map(sessionId => {
+    const result = loginctl(['show-session', sessionId])
+      .stdout.trim()
+      .split('\n')
+      .reduce((obj, line) => {
+        const x = line.split('=');
+        obj[x[0]] = x[1];
+        return obj;
+      }, {});
+    return JSON.stringify(result);
+  });
+
+  return sessionList;
+};
+
 exports.users = () => {
   let userList = loginctl(['list-users', '--no-legend', '--no-pager'])
     .stdout.trim()

@@ -101,6 +101,10 @@ type Query {
   """
   isEnabled(pattern: String!): Int!
   """
+  List current sessions.
+  """
+  sessions: [JSON!]!
+  """
   List currently logged in users.
   """
   users: [JSON!]!
