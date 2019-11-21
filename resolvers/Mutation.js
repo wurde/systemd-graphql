@@ -150,7 +150,7 @@ exports.setChassis = (parent, args) => {
   return hostnamectl(['set-chassis', args.name.toLowerCase()]).status;
 };
 
-exports.setDeployment = (parent, args) => {
+exports.setDeploymentEnv = (parent, args) => {
   return hostnamectl(['set-deployment', args.name]).status;
 };
 

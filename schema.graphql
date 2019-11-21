@@ -333,7 +333,7 @@ type Mutation {
   """
   Set the deployment environment description. Returns the exit code of the process.
   """
-  setDeployment(name: String): Int!
+  setDeploymentEnv(name: String): Int!
   """
   Set the location string for the system. Returns the exit code of the process.
   """

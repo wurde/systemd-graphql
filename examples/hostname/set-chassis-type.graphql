@@ -1,5 +1,10 @@
 # Set chassis type.
 
 mutation SetChassisType {
-  setChassisType(name: "laptop")
+  setChassis(name: SERVER)
 }
+#=> {
+#=>   "data": {
+#=>     "setChassis": 0
+#=>   }
+#=> }

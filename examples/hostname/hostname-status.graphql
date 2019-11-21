@@ -3,3 +3,19 @@
 query HostnameStatus {
   hostnameStatus
 }
+#=> {
+#=>   "data": {
+#=>     "hostname": {
+#=>       "staticHostname": "solace-galagapro",
+#=>       "iconName": "computer-laptop",
+#=>       "chassis": "laptop",
+#=>       "deployment": "development",
+#=>       "location": "Houston, TX",
+#=>       "machineId": "d373bae14ede48259d9d7e9473943411",
+#=>       "bootId": "1d962665bad44acd87d311304e333492",
+#=>       "operatingSystem": "Ubuntu 18.04.3 LTS",
+#=>       "kernel": "Linux 4.15.0-70-generic",
+#=>       "architecture": "x86-64"
+#=>     }
+#=>   }
+#=> }

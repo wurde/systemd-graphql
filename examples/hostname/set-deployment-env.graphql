@@ -3,3 +3,8 @@
 mutation SetDeploymentEnv {
   setDeploymentEnv(name: "staging")
 }
+#=> {
+#=>   "data": {
+#=>     "setDeploymentEnv": 0
+#=>   }
+#=> }

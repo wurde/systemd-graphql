@@ -1,0 +1,10 @@
+# Set machine location.
+
+mutation SetLocation {
+  setLocation(name: "POD011, U23")
+}
+#=> {
+#=>   "data": {
+#=>     "setLocation": 0
+#=>   }
+#=> }

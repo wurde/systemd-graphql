@@ -1,5 +1,0 @@
-# Set machine location.
-
-mutation SetMachineLocation {
-  setMachineLocation(name: "POD011, U23")
-}

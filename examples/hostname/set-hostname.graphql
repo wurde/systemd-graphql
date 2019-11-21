@@ -3,3 +3,8 @@
 mutation SetHostname {
   setHostname(name: "laptop-galagapro")
 }
+#=> {
+#=>   "data": {
+#=>     "setHostname": 0
+#=>   }
+#=> }
