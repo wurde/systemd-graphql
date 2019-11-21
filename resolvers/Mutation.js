@@ -162,3 +162,7 @@ exports.setLocation = (parent, args) => {
 exports.setLocale = (parent, args) => {
   return localectl(['set-locale', args.name]).status;
 };
+
+exports.setKeymap = (parent, args) => {
+  return localectl(['set-keymap', args.name]).status;
+};

@@ -193,6 +193,26 @@ type Query {
   """
   locales: [String!]!
   """
+  List available keyboard mappings.
+  """
+  keymaps: [String!]!
+  """
+  List available X11 keymap models.
+  """
+  x11KeymapModels: [String!]!
+  """
+  List available X11 keymap layouts.
+  """
+  x11KeymapLayouts: [String!]!
+  """
+  List available X11 keymap variants. Takes an optional layout parameter to limit the output to the variants suitable for the specific layout.
+  """
+  x11KeymapVariants(layout: String): [String!]!
+  """
+  List available X11 keymap options.
+  """
+  x11KeymapOptions: [String!]!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!
@@ -350,6 +370,14 @@ type Mutation {
   Set the system locale. Returns the exit code of the process.
   """
   setLocale(name: String!): Int!
+  """
+  Set the system keyboard mapping for the console and X11. This takes a mapping name (such as "de" or "us"), and possibly a second one to define a toggle keyboard mapping. Returns the exit code of the process.
+  """
+  setKeymap(name: String!): Int!
+  """
+  Set the system default keyboard mapping for X11 and the virtual console. This takes a keyboard mapping name (such as "de" or "us"), and possibly a model, variant, and options. Returns the exit code of the process.
+  """
+  setX11Keymap(name: String!): Int!
 }
 
 """

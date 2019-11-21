@@ -1,5 +1,5 @@
 # Set keyboard layout.
 
 mutation SetKeyboardLayout {
-  setKeyboardLayout(name: "dvorak")
+  setKeymap(name: "dvorak")
 }

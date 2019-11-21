@@ -409,6 +409,61 @@ exports.locales = (parent, args) => {
   }
 };
 
+exports.keymaps = (parent, args) => {
+  const cmdResult = localectl(['list-keymaps']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
+exports.x11KeymapModels = (parent, args) => {
+  const cmdResult = localectl(['list-x11-keymap-models']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
+exports.x11KeymapLayouts = (parent, args) => {
+  const cmdResult = localectl(['list-x11-keymap-layouts']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
+exports.x11KeymapVariants = (parent, args) => {
+  const cmdArgs = ['list-x11-keymap-variants'];
+  if (args.layout) {
+    cmdArgs.push(args.layout);
+  }
+
+  const cmdResult = localectl(cmdArgs);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
+exports.x11KeymapOptions = (parent, args) => {
+  const cmdResult = localectl(['list-x11-keymap-options']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
 exports.journal = (parent, args) => {
   const inputArgs = ['--no-pager']
 
