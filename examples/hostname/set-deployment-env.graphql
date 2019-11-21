@@ -1,0 +1,5 @@
+# Set deployment environment.
+
+mutation SetDeploymentEnv {
+  setDeploymentEnv(name: "staging")
+}

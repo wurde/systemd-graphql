@@ -38,7 +38,7 @@ sudo npm start
 - [Show hostname status](./examples/hostname/hostname-status.graphql)
 - [Set hostname](./examples/hostname/set-hostname.graphql)
 - [Set deployment environment](./examples/hostname/set-deployment-env.graphql)
-- [Set chasis type](./examples/hostname/set-chasis-type.graphql)
+- [Set chassis type](./examples/hostname/set-chassis-type.graphql)
 - [Set machine location](./examples/hostname/set-machine-location.graphql)
 
 ### Locale Management (`localectl`)

@@ -1,0 +1,5 @@
+# Set hostname.
+
+mutation SetHostname {
+  setHostname(name: "laptop-galagapro")
+}

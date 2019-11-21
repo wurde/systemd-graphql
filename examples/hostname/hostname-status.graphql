@@ -1,0 +1,16 @@
+# Show hostname status.
+
+query HostnameStatus {
+  hostnameStatus {
+    staticName
+    transientName
+    iconName
+    location
+    chassis
+    machineId
+    bootId
+    os
+    kernel
+    arch
+  }
+}

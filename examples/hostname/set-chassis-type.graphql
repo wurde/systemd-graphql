@@ -1,0 +1,5 @@
+# Set chassis type.
+
+mutation SetChassisType {
+  setChassisType(name: "laptop")
+}
