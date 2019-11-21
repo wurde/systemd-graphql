@@ -546,6 +546,16 @@ exports.x11KeymapOptions = (parent, args) => {
   }
 };
 
+exports.timezones = (parent, args) => {
+  const cmdResult = timedatectl(['list-timezones', '--no-pager']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
 exports.journal = (parent, args) => {
   const inputArgs = ['--no-pager']
 

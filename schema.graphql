@@ -221,6 +221,10 @@ type Query {
   """
   x11KeymapOptions: [String!]!
   """
+  List available time zones.
+  """
+  timezones: [String!]!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!
