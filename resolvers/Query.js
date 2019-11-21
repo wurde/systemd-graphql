@@ -5,6 +5,7 @@
 const systemctl = require('../helpers/systemctl');
 const journalctl = require('../helpers/journalctl');
 const loginctl = require('../helpers/loginctl');
+const hostnamectl = require('../helpers/hostnamectl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -348,6 +349,29 @@ exports.blame = () => {
   })
 
   return units;
+};
+
+exports.hostname = (parent, args) => {
+  let result = hostnamectl(["status"]);
+
+  if (result.status === 0) {
+    result = result.stdout
+      .trim()
+      .split('\n')
+      .reduce((obj, line) => {
+        const x = line.split(':');
+        obj[x[0].trim()] = x[1].trim();
+        return obj;
+      }, {});
+  } else {
+    result = null;
+  }
+
+  if (result) {
+    return JSON.stringify(result);
+  } else {
+    return null;
+  }
 };
 
 exports.journal = (parent, args) => {

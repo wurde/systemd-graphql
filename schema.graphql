@@ -165,6 +165,10 @@ type Query {
   """
   blame: [Unit!]!
   """
+  Show current system hostname and related information.
+  """
+  hostname: JSON!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!
@@ -298,6 +302,10 @@ type Mutation {
   Terminates all sessions of a user. This kills all processes of all sessions of the user and deallocates all runtime resources attached to the user. Returns the exit code of the process.
   """
   terminateUser(uid: Int!): Int!
+  """
+  Set the system hostname. Returns the exit code of the process.
+  """
+  setHostname(name: String!): Int!
 }
 
 """

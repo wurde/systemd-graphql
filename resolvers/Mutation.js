@@ -136,3 +136,7 @@ exports.terminateSession = (parent, args) => {
 exports.terminateUser = (parent, args) => {
   return loginctl(['terminate-user', args.uid]).status;
 };
+
+exports.setHostname = (parent, args) => {
+  return loginctl(['set-hostname', args.name]).status;
+};
