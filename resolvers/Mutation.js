@@ -121,6 +121,14 @@ exports.removeUnit = (parent, args) => {
   return !fs.existsSync(unitPath);
 };
 
+exports.lockSession = (parent, args) => {
+  return loginctl(['lock-session', args.id]).status;
+};
+
+exports.unlockSession = (parent, args) => {
+  return loginctl(['unlock-session', args.id]).status;
+};
+
 exports.terminateUser = (parent, args) => {
   return loginctl(['terminate-user', args.uid]).status;
 };

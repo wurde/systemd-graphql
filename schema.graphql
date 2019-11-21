@@ -279,6 +279,14 @@ type Mutation {
   """
   removeUnit(name: String!): Boolean!
   """
+  Activates the screen lock on a session. Returns the exit code of the process.
+  """
+  lockSession(id: Int!): Int!
+  """
+  Deactivates the screen lock on a session. Returns the exit code of the process.
+  """
+  unlockSession(id: Int!): Int!
+  """
   Terminates all sessions of a user. This kills all processes of all sessions of the user and deallocates all runtime resources attached to the user. Returns the exit code of the process.
   """
   terminateUser(uid: Int!): Int!

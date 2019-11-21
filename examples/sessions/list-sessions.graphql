@@ -1,15 +1,34 @@
 # List sessions.
 
 query ListSessions {
-  sessions {
-    id
-    user {
-      uid
-      name
-    }
-    seat {
-      id
-    }
-    tty
-  }
+  sessions
 }
+#=> {
+#=>   "data": {
+#=>     "sessions": [
+#=>       {
+#=>         "Id": "2",
+#=>         "User": "1000",
+#=>         "Name": "wurde",
+#=>         "Timestamp": "Wed 2019-11-20 00:50:24 CST",
+#=>         "TimestampMonotonic": "6640202",
+#=>         "VTNr": "1",
+#=>         "Seat": "seat0",
+#=>         "TTY": "tty1",
+#=>         "Remote": "no",
+#=>         "Service": "gdm-autologin",
+#=>         "Scope": "session-2.scope",
+#=>         "Leader": "1310",
+#=>         "Audit": "2",
+#=>         "Type": "x11",
+#=>         "Class": "user",
+#=>         "Active": "yes",
+#=>         "State": "active",
+#=>         "IdleHint": "no",
+#=>         "IdleSinceHint": "1574315826836878",
+#=>         "IdleSinceHintMonotonic": "54937595203",
+#=>         "LockedHint": "no"
+#=>       }
+#=>     ]
+#=>   }
+#=> }
