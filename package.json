@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "aws-lambda": "^0.1.2",
+    "camelcase": "^5.3.1",
     "graphql": "^0.13.2",
     "graphql-yoga": "^1.18.3"
   },

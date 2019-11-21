@@ -2,6 +2,7 @@
  * Dependencies
  */
 
+const camelcase = require('camelcase');
 const systemctl = require('../helpers/systemctl');
 const journalctl = require('../helpers/journalctl');
 const loginctl = require('../helpers/loginctl');
@@ -360,7 +361,7 @@ exports.hostname = (parent, args) => {
       .split('\n')
       .reduce((obj, line) => {
         const x = line.split(':');
-        obj[x[0].trim()] = x[1].trim();
+        obj[camelcase(x[0].trim())] = x[1].trim();
         return obj;
       }, {});
   } else {
