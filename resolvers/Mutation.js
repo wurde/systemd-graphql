@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const systemctl = require('../helpers/systemctl');
 const loginctl = require('../helpers/loginctl');
+const hostnamectl = require('../helpers/hostnamectl');
 
 /**
  * Constants
@@ -138,5 +139,21 @@ exports.terminateUser = (parent, args) => {
 };
 
 exports.setHostname = (parent, args) => {
-  return loginctl(['set-hostname', args.name]).status;
+  return hostnamectl(['set-hostname', args.name]).status;
+};
+
+exports.setIconName = (parent, args) => {
+  return hostnamectl(['set-icon-name', args.name]).status;
+};
+
+exports.setChassis = (parent, args) => {
+  return hostnamectl(['set-chassis', args.name.toLowerCase()]).status;
+};
+
+exports.setDeployment = (parent, args) => {
+  return hostnamectl(['set-deployment', args.name]).status;
+};
+
+exports.setLocation = (parent, args) => {
+  return hostnamectl(['set-location', args.name]).status;
 };

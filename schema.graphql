@@ -38,6 +38,22 @@ enum ServiceType {
 }
 
 """
+All chassis types.
+"""
+enum ChassisType {
+  DESKTOP
+  LAPTOP
+  CONVERTIBLE
+  SERVER
+  TABLET
+  HANDSET
+  WATCH
+  EMBEDDED
+  VM
+  CONTAINER
+}
+
+"""
 All journal output types.
 """
 enum JournalOutputType {
@@ -305,7 +321,23 @@ type Mutation {
   """
   Set the system hostname. Returns the exit code of the process.
   """
-  setHostname(name: String!): Int!
+  setHostname(name: String): Int!
+  """
+  Set the system icon name. Returns the exit code of the process.
+  """
+  setIconName(name: String): Int!
+  """
+  Set the chassis type. Returns the exit code of the process.
+  """
+  setChassis(name: ChassisType): Int!
+  """
+  Set the deployment environment description. Returns the exit code of the process.
+  """
+  setDeployment(name: String): Int!
+  """
+  Set the location string for the system. Returns the exit code of the process.
+  """
+  setLocation(name: String): Int!
 }
 
 """
