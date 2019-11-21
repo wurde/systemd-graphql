@@ -8,6 +8,7 @@ const systemctl = require('../helpers/systemctl');
 const loginctl = require('../helpers/loginctl');
 const hostnamectl = require('../helpers/hostnamectl');
 const localectl = require('../helpers/localectl');
+const bootctl = require('../helpers/bootctl');
 
 /**
  * Constants
@@ -169,4 +170,8 @@ exports.setKeymap = (parent, args) => {
 
 exports.setX11Keymap = (parent, args) => {
   return localectl(['set-x11-keymap', args.name]).status;
+};
+
+exports.updateBootLoader = (parent, args) => {
+  return bootctl(['update']).status;
 };
