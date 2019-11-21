@@ -1,0 +1,5 @@
+# Upload audio sample.
+
+mutation UploadAudioSample {
+  uploadAudioSample(filename: "chirp.ogg")
+}

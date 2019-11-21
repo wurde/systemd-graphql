@@ -1,0 +1,11 @@
+# Show network link status.
+
+query NetworkLinkStatus {
+  networkLinkStatus(name: "eth0") {
+    type
+    path
+    vendor
+    model
+    hardwareAddress
+  }
+}

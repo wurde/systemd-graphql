@@ -1,0 +1,11 @@
+# Show system clock settings.
+
+query SysClockStatus {
+    systemClockStatus {
+      localTime
+      universalTime
+      rtcTime
+      timezone
+      hasSyncronization
+    }
+}

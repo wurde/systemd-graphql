@@ -1,0 +1,6 @@
+# Set current time and timezone.
+
+mutation SetTimeAndTimezone {
+  setTimezone(name: "America/New_York")
+  setTime(value: "2012-10-30 18:17:16")
+}

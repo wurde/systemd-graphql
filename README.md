@@ -56,17 +56,18 @@ sudo npm start
 ### Time/Date Management (`timedatectl`)
 
 - [Show system clock settings](./examples/time/sys-clock-status.graphql)
-- [Set current time and timezone](./examples/time/set-current-timezone.graphql)
+- [Set current time and timezone](./examples/time/set-time-and-timezone.graphql)
 
 ### Network Management (`networkctl`)
 
-- [List networks](./examples/network/list-networks.graphql)
-- [Show network status](./examples/network/network-status.graphql)
+- [List network links](./examples/network/list-network-links.graphql)
+- [Show network link status](./examples/network/network-status.graphql)
 
 ### PulseAudio Management (`pactl`)
 
+- [List audio samples](./examples/pulse-audio/list-audio-samples.graphql)
 - [Play audio sample](./examples/pulse-audio/play-audio-sample.graphql)
-- [Mute input source](./examples/pulse-audio/mute-input-source.graphql)
+- [Upload audio sample](./examples/pulse-audio/upload-audio-sample.graphql)
 
 ### D-BUS Management (`busctl`)
 

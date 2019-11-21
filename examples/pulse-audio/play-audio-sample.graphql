@@ -1,0 +1,5 @@
+# Play audio sample.
+
+mutation PlayAudioSample {
+  playAudioSample(name: "bell.ogg")
+}

@@ -1,0 +1,8 @@
+# Get boot loader status.
+
+query BootLoaderStatus {
+  bootLoaderStatus {
+    hasSecureBoot
+    efiVariables
+  }
+}

@@ -1,0 +1,11 @@
+# List audio samples.
+
+query ListAudioSamples {
+  listAudioSamples {
+    name
+    fileSize
+    duration
+    channelMap
+    sampleSpec
+  }
+}
