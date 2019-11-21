@@ -1,11 +1,5 @@
 # List network links.
 
 query ListNetworkLinks {
-  networkLinks {
-    id
-    name
-    type
-    operational
-    setup
-  }
+  networkLinks
 }

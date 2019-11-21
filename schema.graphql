@@ -225,6 +225,10 @@ type Query {
   """
   timezones: [String!]!
   """
+  Show a list of existing links and their status.
+  """
+  networkLinks: [JSON!]!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!

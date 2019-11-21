@@ -10,6 +10,7 @@ const localectl = require('../helpers/localectl');
 const hostnamectl = require('../helpers/hostnamectl');
 const timedatectl = require('../helpers/timedatectl');
 const bootctl = require('../helpers/bootctl');
+const networkctl = require('../helpers/networkctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -536,7 +537,7 @@ exports.x11KeymapVariants = (parent, args) => {
   }
 };
 
-exports.x11KeymapOptions = (parent, args) => {
+exports.x11KeymapOptions = () => {
   const cmdResult = localectl(['list-x11-keymap-options']);
   const result = cmdResult.stdout.trim().split('\n');
   if (cmdResult.status === 0) {
@@ -546,9 +547,30 @@ exports.x11KeymapOptions = (parent, args) => {
   }
 };
 
-exports.timezones = (parent, args) => {
+exports.timezones = () => {
   const cmdResult = timedatectl(['list-timezones', '--no-pager']);
   const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
+exports.networkLinks = () => {
+  const cmdResult = networkctl(['list', '--no-pager', '--no-legend']);
+  const result = cmdResult.stdout.trim().split('\n').map(line => {
+    const link = {}
+    const cols = line.trim().split(/\s+/);
+    return JSON.stringify({
+      id: cols[0],
+      link: cols[1],
+      type: cols[2],
+      operational: cols[3],
+      setup: cols[4],
+    })
+  });
+
   if (cmdResult.status === 0) {
     return result;
   } else {
