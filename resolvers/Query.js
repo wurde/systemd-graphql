@@ -609,6 +609,38 @@ exports.networkLinks = () => {
   }
 };
 
+exports.audioModules = () => {
+  let result = pactl(['list', 'modules']).stdout.trim().split('\n\n');
+
+  result = result.map(moduleStr => {
+    addProperties = false;
+
+    const moduleObj = moduleStr.split('\n').reduce((obj, line, i) => {
+      if (i === 0) {
+        obj["id"] = parseInt(line.match(/\d+/)[0]);
+      } else if (addProperties) {
+        line = line.trim();
+        if (line.length > 0) {
+          const x = line.split('=');
+          obj[x[0].trim()] = x[1].trim();
+        }
+      } else {
+        if (line.match("Properties:")) {
+          addProperties = true;
+        } else {
+          const x = line.split(':');
+          obj[camelcase(x[0].trim())] = x[1].trim();
+        }
+      }
+      return obj;
+    }, {});
+
+    return JSON.stringify(moduleObj);
+  })
+
+  return result;
+};
+
 exports.journal = (parent, args) => {
   const inputArgs = ['--no-pager']
 
