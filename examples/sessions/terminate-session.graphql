@@ -3,3 +3,8 @@
 mutation TerminateSession {
   terminateSession(id: 2)
 }
+#=> {
+#=>   "data": {
+#=>     "terminateSession": 0
+#=>   }
+#=> }

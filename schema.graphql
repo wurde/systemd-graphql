@@ -77,13 +77,17 @@ type Query {
   """
   isSystemRunning: String!
   """
-  Show terse runtime status information about a unit.
+  Show properties of a session or the manager itself. If no argument is specified, properties of the manager will be shown.
   """
-  unitStatus(pattern: String!): UnitStatus!
+  sessionStatus(id: Int): JSON
   """
   Show terse runtime status information about a user.
   """
   userStatus(uid: Int, name: String): JSON
+  """
+  Show terse runtime status information about a unit.
+  """
+  unitStatus(pattern: String!): UnitStatus!
   """
   Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to.
   """

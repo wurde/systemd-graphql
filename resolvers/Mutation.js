@@ -129,7 +129,7 @@ exports.unlockSession = (parent, args) => {
   return loginctl(['unlock-session', args.id]).status;
 };
 
-exports.terminatesSession = (parent, args) => {
+exports.terminateSession = (parent, args) => {
   return loginctl(['terminate-session', args.id]).status;
 };
 

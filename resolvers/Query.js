@@ -34,29 +34,31 @@ exports.isSystemRunning = () => {
   return result.stdout.trim();
 };
 
-exports.unitStatus = (parent, args) => {
-  try {
-    const result = systemctl(['status', args.pattern]);
+exports.sessionStatus = (parent, args) => {
+  const cmdArgs = ['show-session'];
+  if (args.id) {
+    cmdArgs.push(args.id);
+  }
 
-    const res = {};
-    res['statusCode'] = result.status;
+  let result = loginctl(cmdArgs);
 
-    const lines = result.stdout.split('\n');
-    lines.forEach(line => {
-      if (line.match(/Loaded/)) {
-        res['loadState'] = line.trim().split(' ')[1];
-      }
-      if (line.match(/Active/)) {
-        res['activeState'] = line.trim().split(' ')[1];
-      }
-      if (line.match(/Main PID/)) {
-        res['mainPid'] = line.match(/\b\d+\b/)[0];
-      }
-    })
+  if (result.status === 0) {
+    result = result.stdout
+      .trim()
+      .split('\n')
+      .reduce((obj, line) => {
+        const x = line.split('=');
+        obj[x[0]] = x[1];
+        return obj;
+      }, {});
+  } else {
+    result = null;
+  }
 
-    return res;
-  } catch (e) {
-    console.error('e', e);
+  if (result) {
+    return JSON.stringify(result);
+  } else {
+    return null;
   }
 };
 
@@ -81,6 +83,32 @@ exports.userStatus = (parent, args) => {
     return JSON.stringify(result);
   } else {
     return null;
+  }
+};
+
+exports.unitStatus = (parent, args) => {
+  try {
+    const result = systemctl(['status', args.pattern]);
+
+    const res = {};
+    res['statusCode'] = result.status;
+
+    const lines = result.stdout.split('\n');
+    lines.forEach(line => {
+      if (line.match(/Loaded/)) {
+        res['loadState'] = line.trim().split(' ')[1];
+      }
+      if (line.match(/Active/)) {
+        res['activeState'] = line.trim().split(' ')[1];
+      }
+      if (line.match(/Main PID/)) {
+        res['mainPid'] = line.match(/\b\d+\b/)[0];
+      }
+    });
+
+    return res;
+  } catch (e) {
+    console.error('e', e);
   }
 };
 
