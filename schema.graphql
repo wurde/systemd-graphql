@@ -402,6 +402,14 @@ type Mutation {
   Removes all installed versions of systemd-boot from the EFI system partition, and removes systemd-boot from the EFI boot variables. Returns the exit code of the process.
   """
   removeBootLoader: Int!
+  """
+  Set the system time zone to the specified value. If the RTC is configured to be in the local time, this will also update the RTC time. This call will alter the /etc/localtime symlink. Returns the exit code of the process.
+  """
+  setTimezone(timezone: String!): Int!
+  """
+  Set the system clock to the specified time. This will also update the RTC time accordingly. The time may be specified in the format "2012-10-30 18:17:16". Returns the exit code of the process.
+  """
+  setTime(time: String!): Int!
 }
 
 """

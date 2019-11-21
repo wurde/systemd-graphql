@@ -9,6 +9,7 @@ const loginctl = require('../helpers/loginctl');
 const hostnamectl = require('../helpers/hostnamectl');
 const localectl = require('../helpers/localectl');
 const bootctl = require('../helpers/bootctl');
+const timedatectl = require('../helpers/timedatectl');
 
 /**
  * Constants
@@ -182,4 +183,12 @@ exports.installBootLoader = (parent, args) => {
 
 exports.removeBootLoader = (parent, args) => {
   return bootctl(['remove']).status;
+};
+
+exports.setTimezone = (parent, args) => {
+  return timedatectl(['set-timezone', args.timezone]).status;
+};
+
+exports.setTime = (parent, args) => {
+  return timedatectl(['set-time', args.time]).status;
 };

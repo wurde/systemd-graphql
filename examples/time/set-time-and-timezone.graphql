@@ -1,6 +1,12 @@
 # Set current time and timezone.
 
 mutation SetTimeAndTimezone {
-  setTimezone(name: "America/New_York")
-  setTime(value: "2012-10-30 18:17:16")
+  setTimezone(timezone: "America/New_York")
+  setTime(time: "2012-10-30 18:17:16")
 }
+#=> {
+#=>   "data": {
+#=>     "setTimezone": 0
+#=>     "setTime": 0
+#=>   }
+#=> }
