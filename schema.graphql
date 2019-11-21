@@ -93,6 +93,10 @@ type Query {
   """
   isSystemRunning: String!
   """
+  Show current settings of the system clock and RTC, including whether network time synchronization through systemd-timesyncd.service is active.
+  """
+  systemClockStatus: JSON
+  """
   Checks and prints the currently installed versions of the boot loader binaries and all current EFI boot variables.
   """
   bootLoaderStatus: BootLoaderStatus

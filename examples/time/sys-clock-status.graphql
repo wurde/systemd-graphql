@@ -1,11 +1,18 @@
 # Show system clock settings.
 
 query SysClockStatus {
-    systemClockStatus {
-      localTime
-      universalTime
-      rtcTime
-      timezone
-      hasSyncronization
-    }
+  systemClockStatus
 }
+#=> {
+#=>   "data": {
+#=>     "systemClockStatus": {
+#=>       "localTime": "Thu 2019-11-21 13",
+#=>       "universalTime": "Thu 2019-11-21 19",
+#=>       "rtcTime": "Thu 2019-11-21 19",
+#=>       "timeZone": "America/Chicago (CST, -0600)",
+#=>       "systemClockSynchronized": "yes",
+#=>       "systemdTimesyncdServiceActive": "yes",
+#=>       "rtcInLocalTz": "no"
+#=>     }
+#=>   }
+#=> }

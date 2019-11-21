@@ -8,6 +8,7 @@ const journalctl = require('../helpers/journalctl');
 const loginctl = require('../helpers/loginctl');
 const localectl = require('../helpers/localectl');
 const hostnamectl = require('../helpers/hostnamectl');
+const timedatectl = require('../helpers/timedatectl');
 const bootctl = require('../helpers/bootctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
@@ -38,7 +39,30 @@ exports.isSystemRunning = () => {
   return result.stdout.trim();
 };
 
-exports.bootLoaderStatus = (parent, args) => {
+exports.systemClockStatus = () => {
+  let result = timedatectl(['status']);
+
+  if (result.status === 0) {
+    result = result.stdout
+      .trim()
+      .split('\n')
+      .reduce((obj, line) => {
+        const x = line.split(':');
+        obj[camelcase(x[0].trim())] = x[1].trim();
+        return obj;
+      }, {});
+  } else {
+    result = null;
+  }
+
+  if (result) {
+    return JSON.stringify(result);
+  } else {
+    return null;
+  }
+};
+
+exports.bootLoaderStatus = () => {
   const result = bootctl(["status"]);
   const lines = result.stdout.split('\n');
 
