@@ -47,7 +47,7 @@ exports.audioInfo = (parent, args) => {
     .split('\n');
 
   result = result.reduce((obj, line) => {
-    const x = line.split(': ');
+    const x = line.split(/: (.+)/);
     obj[camelcase(x[0].trim())] = x[1].trim();
     return obj;
   }, {});
@@ -63,7 +63,7 @@ exports.networkLinkStatus = (parent, args) => {
   result.shift() // Remove legend info
 
   result = result.reduce((obj, line) => {
-    const x = line.split(': ');
+    const x = line.split(/: (.+)/);
     obj[camelcase(x[0].trim())] = x[1].trim();
     return obj;
   }, {});
@@ -79,7 +79,7 @@ exports.systemClockStatus = () => {
       .trim()
       .split('\n')
       .reduce((obj, line) => {
-        const x = line.split(': ');
+        const x = line.split(/: (.+)/);
         obj[camelcase(x[0].trim())] = x[1].trim();
         return obj;
       }, {});
@@ -129,17 +129,17 @@ exports.bootLoaderStatus = () => {
   }
 
   system = system.reduce((obj, line) => {
-    const x = line.split(': ');
+    const x = line.split(/: (.+)/);
     obj[camelcase(x[0].trim())] = x[1].trim();
     return obj;
   }, {});
   currentLoader = currentLoader.reduce((obj, line) => {
-    const x = line.split(': ');
+    const x = line.split(/: (.+)/);
     obj[camelcase(x[0].trim())] = x[1].trim();
     return obj;
   }, {});
   efiVariables = efiVariables.reduce((obj, line) => {
-    const x = line.split(': ');
+    const x = line.split(/: (.+)/);
     obj[camelcase(x[0].trim())] = x[1].trim();
     return obj;
   }, {});
@@ -475,7 +475,7 @@ exports.hostname = (parent, args) => {
       .trim()
       .split('\n')
       .reduce((obj, line) => {
-        const x = line.split(': ');
+        const x = line.split(/: (.+)/);
         obj[camelcase(x[0].trim())] = x[1].trim();
         return obj;
       }, {});
@@ -498,7 +498,7 @@ exports.locale = (parent, args) => {
       .trim()
       .split('\n')
       .reduce((obj, line) => {
-        const x = line.split(': ');
+        const x = line.split(/: (.+)/);
         obj[camelcase(x[0].trim())] = x[1].trim();
         return obj;
       }, {});
@@ -622,15 +622,41 @@ exports.audioModules = () => {
         line = line.trim();
         if (line.length > 0) {
           const x = line.split('=');
-          obj[x[0].trim()] = x[1].trim();
+          obj[x[0].trim()] = x[1].trim().replace(/"/g, '');
         }
       } else {
         if (line.match("Properties:")) {
           addProperties = true;
         } else {
-          const x = line.split(': ');
-          obj[camelcase(x[0].trim())] = x[1].trim();
+          const x = line.split(/: (.+)/);
+          obj[camelcase(x[0].trim())] = x[1].trim().replace(/"/g, "'");
         }
+      }
+      return obj;
+    }, {});
+
+    return JSON.stringify(moduleObj);
+  })
+
+  return result;
+};
+
+exports.audioSinks = () => {
+  let result = pactl(['list', 'sinks']).stdout.trim().split('\n\n');
+
+  result = result.map(sinkStr => {
+    addProperties = false;
+
+    const moduleObj = sinkStr.split('\n').reduce((obj, line, i) => {
+      if (i === 0) {
+        obj["id"] = parseInt(line.match(/\d+/)[0]);
+      } else {
+        line = line.trim();
+        let cols = line.split(/: (.+)/);
+        if (cols.length < 2) {
+          cols = line.split('=').map(col => col.replace(/"/g, ''))
+        }
+        if (cols.length > 1) obj[camelcase(cols[0].trim())] = cols[1].trim().replace(/"/g, "'");
       }
       return obj;
     }, {});

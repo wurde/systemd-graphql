@@ -241,6 +241,26 @@ type Query {
   """
   audioModules: [JSON!]!
   """
+  Dump all currently loaded audio sinks.
+  """
+  audioSinks: [JSON!]!
+  """
+  Dump all currently loaded audio sink inputs.
+  """
+  audioSinkInputs: [JSON!]!
+  """
+  Dump all currently loaded audio sources.
+  """
+  audioSources: [JSON!]!
+  """
+  Dump all currently loaded audio clients.
+  """
+  audioClients: [JSON!]!
+  """
+  Dump all currently loaded audio cards.
+  """
+  audioCards: [JSON!]!
+  """
   Dump all currently loaded audio samples.
   """
   audioSamples: [JSON!]!
