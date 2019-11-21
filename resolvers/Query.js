@@ -14,7 +14,7 @@ const networkctl = require('../helpers/networkctl');
 const pactl = require('../helpers/pactl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
-const propertyParser = require('../helpers/propertyParser');
+const audioPropertyParser = require('../helpers/audioPropertyParser');
 
 /**
  * Define and export resolvers
@@ -612,12 +612,37 @@ exports.networkLinks = () => {
 
 exports.audioModules = () => {
   const result = pactl(['list', 'modules']).stdout.trim().split('\n\n');
-  return result.map(propertyParser);
+  return result.map(audioPropertyParser);
 };
 
 exports.audioSinks = () => {
   const result = pactl(['list', 'sinks']).stdout.trim().split('\n\n');
-  return result.map(propertyParser);
+  return result.map(audioPropertyParser);
+};
+
+exports.audioSinkInputs = () => {
+  const result = pactl(['list', 'sink-inputs']).stdout.trim().split('\n\n');
+  return result.map(audioPropertyParser);
+};
+
+exports.audioSources = () => {
+  const result = pactl(['list', 'sources']).stdout.trim().split('\n\n');
+  return result.map(audioPropertyParser);
+};
+
+exports.audioClients = () => {
+  const result = pactl(['list', 'clients']).stdout.trim().split('\n\n');
+  return result.map(audioPropertyParser);
+};
+
+exports.audioCards = () => {
+  const result = pactl(['list', 'cards']).stdout.trim().split('\n\n');
+  return result.map(audioPropertyParser);
+};
+
+exports.audioSamples = () => {
+  const result = pactl(['list', 'samples']).stdout.trim().split('\n\n');
+  return result.map(audioPropertyParser);
 };
 
 exports.journal = (parent, args) => {

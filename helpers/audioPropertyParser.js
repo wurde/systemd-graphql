@@ -8,7 +8,7 @@ const camelcase = require('camelcase');
  * Define helper
  */
 
-function propertyParser(inputStr) {
+function audioPropertyParser(inputStr) {
   const obj = inputStr.split('\n').reduce((obj, line, i) => {
     if (i === 0) {
       obj['id'] = parseInt(line.match(/\d+/)[0]);
@@ -33,4 +33,4 @@ function propertyParser(inputStr) {
  * Export helper
  */
 
-module.exports = propertyParser;
+module.exports = audioPropertyParser;
