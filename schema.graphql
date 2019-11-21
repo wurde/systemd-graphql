@@ -93,6 +93,10 @@ type Query {
   """
   isSystemRunning: String!
   """
+  Dump some info about the PulseAudio daemon.
+  """
+  audioInfo: JSON
+  """
   Show information about a link: type, state, kernel module driver, hardware and IP address, configured DNS servers, etc.
   """
   networkLinkStatus(name: String!): JSON
@@ -232,6 +236,14 @@ type Query {
   Show a list of existing links and their status.
   """
   networkLinks: [JSON!]!
+  """
+  Dump all currently loaded audio modules.
+  """
+  audioModules: [JSON!]!
+  """
+  Dump all currently loaded audio samples.
+  """
+  audioSamples: [JSON!]!
   """
   Query the systemd journal.
   """

@@ -11,6 +11,7 @@ const hostnamectl = require('../helpers/hostnamectl');
 const timedatectl = require('../helpers/timedatectl');
 const bootctl = require('../helpers/bootctl');
 const networkctl = require('../helpers/networkctl');
+const pactl = require('../helpers/pactl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -38,6 +39,20 @@ exports.version = () => {
 exports.isSystemRunning = () => {
   const result = systemctl(['is-system-running']);
   return result.stdout.trim();
+};
+
+exports.audioInfo = (parent, args) => {
+  let result = pactl(['info'])
+    .stdout.trim()
+    .split('\n');
+
+  result = result.reduce((obj, line) => {
+    const x = line.split(':');
+    obj[camelcase(x[0].trim())] = x[1].trim();
+    return obj;
+  }, {});
+
+  return JSON.stringify(result);
 };
 
 exports.networkLinkStatus = (parent, args) => {
