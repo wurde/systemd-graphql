@@ -1,0 +1,5 @@
+# Set keyboard layout.
+
+mutation SetKeyboardLayout {
+  setKeyboardLayout(name: "dvorak")
+}

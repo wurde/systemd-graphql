@@ -1,0 +1,5 @@
+# Set locale.
+
+mutation SetLocale {
+  setSystemLocale(name: "en_GB.utf8")
+}

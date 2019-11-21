@@ -1,0 +1,11 @@
+# Get locale status.
+
+query LocaleStatus {
+  localeStatus {
+    systemLocale
+    vcKeymap
+    x11Layout
+    x11Model
+    x11Variant
+  }
+}
