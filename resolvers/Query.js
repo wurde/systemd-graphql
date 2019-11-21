@@ -399,6 +399,16 @@ exports.locale = (parent, args) => {
   }
 };
 
+exports.locales = (parent, args) => {
+  const cmdResult = localectl(['list-locales']);
+  const result = cmdResult.stdout.trim().split('\n');
+  if (cmdResult.status === 0) {
+    return result;
+  } else {
+    return [];
+  }
+};
+
 exports.journal = (parent, args) => {
   const inputArgs = ['--no-pager']
 

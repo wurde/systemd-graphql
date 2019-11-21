@@ -1,11 +1,16 @@
 # Get locale status.
 
 query LocaleStatus {
-  localeStatus {
-    systemLocale
-    vcKeymap
-    x11Layout
-    x11Model
-    x11Variant
-  }
+  locale
 }
+#=> {
+#=>   "data": {
+#=>     "locale": {
+#=>       "systemLocale": "LANG=en_US.UTF-8",
+#=>       "vcKeymap": "n/a",
+#=>       "x11Layout": "us",
+#=>       "x11Model": "pc105",
+#=>       "x11Variant": "dvorak"
+#=>     }
+#=>   }
+#=> }

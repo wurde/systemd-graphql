@@ -189,6 +189,10 @@ type Query {
   """
   locale: JSON!
   """
+  List available locales.
+  """
+  locales: [String!]!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!
