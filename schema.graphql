@@ -101,6 +101,10 @@ type Query {
   """
   isEnabled(pattern: String!): Int!
   """
+  List currently logged in users.
+  """
+  users: [JSON!]!
+  """
   List units that systemd currently has in memory.
   """
   units: [Unit!]!
