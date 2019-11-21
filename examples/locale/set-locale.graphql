@@ -1,5 +1,10 @@
 # Set locale.
 
 mutation SetLocale {
-  setSystemLocale(name: "en_GB.utf8")
+  setLocale(name: "LANG=en_GB.utf8")
 }
+#=> {
+#=>   "data": {
+#=>     "setLocale": 0
+#=>   }
+#=> }

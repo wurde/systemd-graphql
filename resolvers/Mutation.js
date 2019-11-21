@@ -7,6 +7,7 @@ const path = require('path');
 const systemctl = require('../helpers/systemctl');
 const loginctl = require('../helpers/loginctl');
 const hostnamectl = require('../helpers/hostnamectl');
+const localectl = require('../helpers/localectl');
 
 /**
  * Constants
@@ -156,4 +157,8 @@ exports.setDeploymentEnv = (parent, args) => {
 
 exports.setLocation = (parent, args) => {
   return hostnamectl(['set-location', args.name]).status;
+};
+
+exports.setLocale = (parent, args) => {
+  return localectl(['set-locale', args.name]).status;
 };

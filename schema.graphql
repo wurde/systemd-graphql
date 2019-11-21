@@ -346,6 +346,10 @@ type Mutation {
   Set the location string for the system. Returns the exit code of the process.
   """
   setLocation(name: String): Int!
+  """
+  Set the system locale. Returns the exit code of the process.
+  """
+  setLocale(name: String!): Int!
 }
 
 """
