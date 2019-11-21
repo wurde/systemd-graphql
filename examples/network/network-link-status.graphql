@@ -1,11 +1,22 @@
 # Show network link status.
 
 query NetworkLinkStatus {
-  networkLinkStatus(name: "eth0") {
-    type
-    path
-    vendor
-    model
-    hardwareAddress
-  }
+  networkLinkStatus(name: "wifi2")
 }
+#=> {
+#=>   "data": {
+#=>     "networkLinkStatus": {
+#=>       "linkFile": "/lib/systemd/network/99-default.link",
+#=>       "networkFile": "n/a",
+#=>       "type": "wlan",
+#=>       "state": "n/a (unmanaged)",
+#=>       "path": "pci-0000",
+#=>       "driver": "iwlwifi",
+#=>       "vendor": "Intel Corporation",
+#=>       "model": "Wireless 8265 / 8275",
+#=>       "hwAddress": "00",
+#=>       "address": "10.0.0.42",
+#=>       "gateway": "10.0.0.1 (ARRIS Group, Inc.)"
+#=>     }
+#=>   }
+#=> }
