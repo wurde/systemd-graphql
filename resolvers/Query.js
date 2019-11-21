@@ -14,6 +14,7 @@ const networkctl = require('../helpers/networkctl');
 const pactl = require('../helpers/pactl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
+const propertyParser = require('../helpers/propertyParser');
 
 /**
  * Define and export resolvers
@@ -610,61 +611,13 @@ exports.networkLinks = () => {
 };
 
 exports.audioModules = () => {
-  let result = pactl(['list', 'modules']).stdout.trim().split('\n\n');
-
-  result = result.map(moduleStr => {
-    addProperties = false;
-
-    const moduleObj = moduleStr.split('\n').reduce((obj, line, i) => {
-      if (i === 0) {
-        obj["id"] = parseInt(line.match(/\d+/)[0]);
-      } else if (addProperties) {
-        line = line.trim();
-        if (line.length > 0) {
-          const x = line.split('=');
-          obj[x[0].trim()] = x[1].trim().replace(/"/g, '');
-        }
-      } else {
-        if (line.match("Properties:")) {
-          addProperties = true;
-        } else {
-          const x = line.split(/: (.+)/);
-          obj[camelcase(x[0].trim())] = x[1].trim().replace(/"/g, "'");
-        }
-      }
-      return obj;
-    }, {});
-
-    return JSON.stringify(moduleObj);
-  })
-
-  return result;
+  const result = pactl(['list', 'modules']).stdout.trim().split('\n\n');
+  return result.map(propertyParser);
 };
 
 exports.audioSinks = () => {
-  let result = pactl(['list', 'sinks']).stdout.trim().split('\n\n');
-
-  result = result.map(sinkStr => {
-    addProperties = false;
-
-    const moduleObj = sinkStr.split('\n').reduce((obj, line, i) => {
-      if (i === 0) {
-        obj["id"] = parseInt(line.match(/\d+/)[0]);
-      } else {
-        line = line.trim();
-        let cols = line.split(/: (.+)/);
-        if (cols.length < 2) {
-          cols = line.split('=').map(col => col.replace(/"/g, ''))
-        }
-        if (cols.length > 1) obj[camelcase(cols[0].trim())] = cols[1].trim().replace(/"/g, "'");
-      }
-      return obj;
-    }, {});
-
-    return JSON.stringify(moduleObj);
-  })
-
-  return result;
+  const result = pactl(['list', 'sinks']).stdout.trim().split('\n\n');
+  return result.map(propertyParser);
 };
 
 exports.journal = (parent, args) => {
