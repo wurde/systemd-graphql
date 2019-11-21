@@ -383,9 +383,13 @@ type Mutation {
   """
   setX11Keymap(name: String!): Int!
   """
-  Updates all installed versions of systemd-boot, if the current version is newer than the version installed in the EFI system partition. A systemd-boot entry in the EFI boot variables is created if there is no current entry.
+  Updates all installed versions of systemd-boot, if the current version is newer than the version installed in the EFI system partition. A systemd-boot entry in the EFI boot variables is created if there is no current entry. Returns the exit code of the process.
   """
   updateBootLoader: Int!
+  """
+  Removes all installed versions of systemd-boot from the EFI system partition, and removes systemd-boot from the EFI boot variables. Returns the exit code of the process.
+  """
+  removeBootLoader: Int!
 }
 
 """

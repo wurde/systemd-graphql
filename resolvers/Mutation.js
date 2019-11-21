@@ -175,3 +175,7 @@ exports.setX11Keymap = (parent, args) => {
 exports.updateBootLoader = (parent, args) => {
   return bootctl(['update']).status;
 };
+
+exports.removeBootLoader = (parent, args) => {
+  return bootctl(['remove']).status;
+};
