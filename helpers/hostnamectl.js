@@ -18,4 +18,4 @@ function hostnamectl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = hostnamectl;

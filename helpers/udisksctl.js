@@ -18,4 +18,4 @@ function udisksctl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = udisksctl;

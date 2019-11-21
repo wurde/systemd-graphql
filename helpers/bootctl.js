@@ -18,4 +18,4 @@ function bootctl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = bootctl;

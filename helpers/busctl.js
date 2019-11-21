@@ -18,4 +18,4 @@ function busctl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = busctl;

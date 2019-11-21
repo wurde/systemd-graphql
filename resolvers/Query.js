@@ -4,6 +4,7 @@
 
 const systemctl = require('../helpers/systemctl');
 const journalctl = require('../helpers/journalctl');
+const loginctl = require('../helpers/loginctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 
@@ -56,6 +57,30 @@ exports.unitStatus = (parent, args) => {
     return res;
   } catch (e) {
     console.error('e', e);
+  }
+};
+
+exports.userStatus = (parent, args) => {
+  const cmdArgs = ['show-user'];
+  if (args.uid) {
+    cmdArgs.push(args.uid);
+  } else if (args.name) {
+    cmdArgs.push(args.name);
+  }
+
+  let result = loginctl(cmdArgs)
+
+  if (result.status === 0) {
+    result = result.stdout.trim().split("\n")
+    .reduce((obj,line) => {const x = line.split("="); obj[x[0]] = x[1]; return obj}, {});
+  } else {
+    result = null;
+  }
+
+  if (result) {
+    return JSON.stringify(result);
+  } else {
+    return null;
   }
 };
 

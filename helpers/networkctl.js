@@ -18,4 +18,4 @@ function networkctl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = networkctl;

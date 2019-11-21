@@ -77,9 +77,13 @@ type Query {
   """
   isSystemRunning: String!
   """
-  Terse runtime status information about a unit.
+  Show terse runtime status information about a unit.
   """
   unitStatus(pattern: String!): UnitStatus!
+  """
+  Show terse runtime status information about a user.
+  """
+  userStatus(uid: Int, name: String): JSON
   """
   Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to.
   """

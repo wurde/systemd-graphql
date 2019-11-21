@@ -18,4 +18,4 @@ function timedatectl(args) {
  * Export helper
  */
 
-module.exports = systemctl;
+module.exports = timedatectl;
