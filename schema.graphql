@@ -95,7 +95,7 @@ type Query {
   """
   Dump some info about the PulseAudio daemon.
   """
-  audioInfo: JSON
+  audioInfo: JSON!
   """
   Show information about a link: type, state, kernel module driver, hardware and IP address, configured DNS servers, etc.
   """
