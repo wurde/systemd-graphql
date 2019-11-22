@@ -38,7 +38,7 @@ exports.setDefault = (parent, args, context) => {
   return result.status;
 };
 
-exports.start = (parent, args, context) => {
+exports.startUnit = (parent, args, context) => {
   const result = systemctl(['start', args.pattern]);
 
   context.pubsub.publish(context.events.START_UNIT, {
@@ -53,7 +53,7 @@ exports.start = (parent, args, context) => {
   return result.status;
 };
 
-exports.stop = (parent, args, context) => {
+exports.stopUnit = (parent, args, context) => {
   const result = systemctl(['stop', args.pattern]);
 
   context.pubsub.publish(context.events.STOP_UNIT, {
@@ -68,7 +68,7 @@ exports.stop = (parent, args, context) => {
   return result.status;
 };
 
-exports.reload = (parent, args, context) => {
+exports.reloadUnit = (parent, args, context) => {
   const result = systemctl(['reload', args.pattern]);
 
   context.pubsub.publish(context.events.RELOAD_UNIT, {
@@ -83,7 +83,7 @@ exports.reload = (parent, args, context) => {
   return result.status;
 };
 
-exports.restart = (parent, args, context) => {
+exports.restartUnit = (parent, args, context) => {
   const result = systemctl(['restart', args.pattern]);
 
   context.pubsub.publish(context.events.RESTART_UNIT, {
@@ -98,7 +98,7 @@ exports.restart = (parent, args, context) => {
   return result.status;
 };
 
-exports.tryRestart = (parent, args, context) => {
+exports.tryRestartUnit = (parent, args, context) => {
   const result = systemctl(['try-restart', args.pattern]);
 
   context.pubsub.publish(context.events.TRY_RESTART_UNIT, {
@@ -113,7 +113,7 @@ exports.tryRestart = (parent, args, context) => {
   return result.status;
 };
 
-exports.reloadOrRestart = (parent, args, context) => {
+exports.reloadOrRestartUnit = (parent, args, context) => {
   const result = systemctl(['reload-or-restart', args.pattern]);
 
   context.pubsub.publish(context.events.RELOAD_OR_RESTART_UNIT, {
@@ -128,7 +128,7 @@ exports.reloadOrRestart = (parent, args, context) => {
   return result.status;
 };
 
-exports.tryReloadOrRestart = (parent, args, context) => {
+exports.tryReloadOrRestartUnit = (parent, args, context) => {
   const result = systemctl(['try-reload-or-restart', args.pattern]);
 
   context.pubsub.publish(context.events.TRY_RELOAD_OR_RESTART_UNIT, {
@@ -235,7 +235,7 @@ exports.daemonReload = (parent, args, context) => {
   return result.status;
 }
 
-exports.enable = (parent, args, context) => {
+exports.enableUnit = (parent, args, context) => {
   const result = systemctl(['enable', args.pattern])
 
   context.pubsub.publish(context.events.ENABLE, {
@@ -250,7 +250,7 @@ exports.enable = (parent, args, context) => {
   return result.status;
 };
 
-exports.reenable = (parent, args, context) => {
+exports.reenableUnit = (parent, args, context) => {
   const result = systemctl(['reenable', args.pattern])
 
   context.pubsub.publish(context.events.REENABLE, {
@@ -265,7 +265,7 @@ exports.reenable = (parent, args, context) => {
   return result.status;
 };
 
-exports.disable = (parent, args, context) => {
+exports.disableUnit = (parent, args, context) => {
   const result = systemctl(['disable', args.pattern])
 
   context.pubsub.publish(context.events.DISABLE, {
@@ -280,7 +280,7 @@ exports.disable = (parent, args, context) => {
   return result.status;
 };
 
-exports.mask = (parent, args, context) => {
+exports.maskUnit = (parent, args, context) => {
   const result = systemctl(['mask', args.pattern])
 
   context.pubsub.publish(context.events.MASK, {
@@ -295,7 +295,7 @@ exports.mask = (parent, args, context) => {
   return result.status;
 };
 
-exports.unmask = (parent, args, context) => {
+exports.unmaskUnit = (parent, args, context) => {
   const result = systemctl(['unmask', args.pattern])
 
   context.pubsub.publish(context.events.UNMASK, {
@@ -310,7 +310,7 @@ exports.unmask = (parent, args, context) => {
   return result.status;
 };
 
-exports.preset = (parent, args, context) => {
+exports.presetUnit = (parent, args, context) => {
   const result = systemctl(['preset', args.pattern])
 
   context.pubsub.publish(context.events.PRESET, {
@@ -339,7 +339,7 @@ exports.presetAll = (parent, args, context) => {
   return result.status;
 };
 
-exports.revert = (parent, args, context) => {
+exports.revertUnit = (parent, args, context) => {
   const result = systemctl(['revert', args.pattern])
 
   context.pubsub.publish(context.events.REVERT, {
@@ -354,7 +354,7 @@ exports.revert = (parent, args, context) => {
   return result.status;
 };
 
-exports.link = (parent, args, context) => {
+exports.linkUnit = (parent, args, context) => {
   const result = systemctl(['link', args.path])
 
   context.pubsub.publish(context.events.LINK, {

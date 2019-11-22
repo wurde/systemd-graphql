@@ -18,7 +18,7 @@ module.exports = {
   HIBERNATE: 'hibernate',
   HYBRID_SLEEP: 'hybrid_sleep',
   DAEMON_RELOAD: 'daemon_reload',
-  ENABLE: 'enable',
+  ENABLE_UNIT: 'enable_unit',
   REENABLE: 'reenable',
   DISABLE: 'disable',
   MASK: 'mask',

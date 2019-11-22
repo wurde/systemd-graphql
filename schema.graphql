@@ -289,27 +289,27 @@ type Mutation {
   """
   Enable one or more units. Returns the exit code of the process.
   """
-  enable(pattern: String!): Int!
+  enableUnit(pattern: String!): Int!
   """
   Reenable one or more units. Returns the exit code of the process.
   """
-  reenable(pattern: String!): Int!
+  reenableUnit(pattern: String!): Int!
   """
   Disables one or more units. Returns the exit code of the process.
   """
-  disable(pattern: String!): Int!
+  disableUnit(pattern: String!): Int!
   """
   Mask one or more units. Returns the exit code of the process.
   """
-  mask(pattern: String!): Int!
+  maskUnit(pattern: String!): Int!
   """
   Unmask one or more units. This will undo the effect of mask. Returns the exit code of the process.
   """
-  unmask(pattern: String!): Int!
+  unmaskUnit(pattern: String!): Int!
   """
   Reset the enable/disable status one or more unit files. Returns the exit code of the process.
   """
-  preset(pattern: String!): Int!
+  presetUnit(pattern: String!): Int!
   """
   Resets all installed unit files to the defaults configured in the preset policy file. Returns the exit code of the process.
   """
@@ -317,39 +317,39 @@ type Mutation {
   """
   Revert one or more unit files to their vendor versions. Returns the exit code of the process.
   """
-  revert(pattern: String!): Int!
+  revertUnit(pattern: String!): Int!
   """
   Link a unit file that is not in the unit file search paths into the unit file search path. Returns the exit code of the process.
   """
-  link(path: String!): Int!
+  linkUnit(path: String!): Int!
   """
   Start (activate) one or more units. Returns the exit code of the process.
   """
-  start(pattern: String!): Int!
+  startUnit(pattern: String!): Int!
   """
   Stop (deactivate) one or more units. Returns the exit code of the process.
   """
-  stop(pattern: String!): Int!
+  stopUnit(pattern: String!): Int!
   """
   Reload configuration for one or more units. Returns the exit code of the process.
   """
-  reload(pattern: String!): Int!
+  reloadUnit(pattern: String!): Int!
   """
   Stop then start one or more units. If the units are not running yet, they will be started. Returns the exit code of the process.
   """
-  restart(pattern: String!): Int!
+  restartUnit(pattern: String!): Int!
   """
   Stop then start one or more units. This does nothing if units are not running. Returns the exit code of the process.
   """
-  tryRestart(pattern: String!): Int!
+  tryRestartUnit(pattern: String!): Int!
   """
   Reload one or more units if they support it. If not, stop and then start them instead. If the units are not running yet, they will be started. Returns the exit code of the process.
   """
-  reloadOrRestart(pattern: String!): Int!
+  reloadOrRestartUnit(pattern: String!): Int!
   """
   Reload one or more units if they support it. If not, stop and then start them instead. This does nothing if units are not running. Returns the exit code of the process.
   """
-  tryReloadOrRestart(pattern: String!): Int!
+  tryReloadOrRestartUnit(pattern: String!): Int!
   """
   Shut down and power-off the system. Returns the exit code of the process.
   """

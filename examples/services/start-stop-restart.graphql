@@ -1,10 +1,10 @@
 # Start, stop, and restart a service.
 
 mutation SetupServer {
-  startFirewall: start(pattern: "ufw.service")
-  startNetdata: start(pattern: "netdata.service")
-  stopMotd: stop(pattern: "motd.service")
-  restartPostgresql: restart(pattern: "postgresql.service")
+  startFirewall: startUnit(pattern: "ufw.service")
+  startNetdata: startUnit(pattern: "netdata.service")
+  stopMotd: stopUnit(pattern: "motd.service")
+  restartPostgresql: restartUnit(pattern: "postgresql.service")
 }
 #=> {
 #=>   "data": {
