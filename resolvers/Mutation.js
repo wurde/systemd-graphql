@@ -30,7 +30,9 @@ exports.setDefault = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'SET_DEFAULT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -45,7 +47,9 @@ exports.startUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'START_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -60,7 +64,9 @@ exports.stopUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'STOP_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -75,7 +81,9 @@ exports.reloadUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'RELOAD_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -90,7 +98,9 @@ exports.restartUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'RESTART_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -105,7 +115,9 @@ exports.tryRestartUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'TRY_RESTART_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -120,7 +132,9 @@ exports.reloadOrRestartUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'RELOAD_OR_RESTART_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -135,7 +149,9 @@ exports.tryReloadOrRestartUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'TRY_RELOAD_OR_RESTART_UNIT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -242,7 +258,9 @@ exports.enableUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'ENABLE',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -257,7 +275,9 @@ exports.reenableUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'REENABLE',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -272,7 +292,9 @@ exports.disableUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'DISABLE',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -287,7 +309,9 @@ exports.maskUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'MASK',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -302,7 +326,9 @@ exports.unmaskUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'UNMASK',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -317,7 +343,9 @@ exports.presetUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'PRESET',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -346,7 +374,9 @@ exports.revertUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'REVERT',
-      pattern: args.pattern,
+      args: {
+        pattern: args.pattern,
+      },
       status: result.status
     })
   });
@@ -361,7 +391,9 @@ exports.linkUnit = (parent, args, context) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'LINK',
-      path: args.path,
+      args: {
+        path: args.path,
+      },
       status: result.status
     })
   });
@@ -376,105 +408,391 @@ exports.addUnit = (parent, args, context) => {
   fs.writeFileSync(unitPath, args.content, { encoding: 'utf8' });
   systemctl(['daemon-reload']);
 
+  context.pubsub.publish(context.events.ADD_UNIT, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'ADD_UNIT',
+      args: {
+        name: args.name,
+        content: args.content,
+      },
+      status: 0
+    })
+  });
+
   return fs.existsSync(unitPath);
 };
 
-exports.editUnit = (parent, args) => {
+exports.editUnit = (parent, args, context) => {
   const unitPath = path.join(ETC_DIR, args.name);
   if (!fs.existsSync(unitPath)) return false;
 
   fs.writeFileSync(unitPath, args.content, { encoding: 'utf8' });
   systemctl(['daemon-reload']);
 
+  context.pubsub.publish(context.events.EDIT_UNIT, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'EDIT_UNIT',
+      args: {
+        name: args.name,
+        content: args.content,
+      },
+      status: 0
+    })
+  });
+
   return fs.existsSync(unitPath);
 };
 
-exports.removeUnit = (parent, args) => {
+exports.removeUnit = (parent, args, context) => {
   const unitPath = path.join(ETC_DIR, args.name);
   if (!fs.existsSync(unitPath)) return false;
 
   fs.unlinkSync(unitPath);
   systemctl(['daemon-reload']);
 
+  context.pubsub.publish(context.events.REMOVE_UNIT, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'REMOVE_UNIT',
+      args: {
+        name: args.name,
+      },
+      status: 0
+    })
+  });
+
   return !fs.existsSync(unitPath);
 };
 
 exports.lockSession = (parent, args) => {
-  return loginctl(['lock-session', args.id]).status;
+  const result = loginctl(['lock-session', args.id])
+
+  context.pubsub.publish(context.events.LOCK_SESSION, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'LOCK_SESSION',
+      args: {
+        id: args.id,
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.unlockSession = (parent, args) => {
-  return loginctl(['unlock-session', args.id]).status;
+  const result = loginctl(['unlock-session', args.id])
+
+  context.pubsub.publish(context.events.UNLOCK_SESSION, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'UNLOCK_SESSION',
+      args: {
+        id: args.id
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.terminateSession = (parent, args) => {
-  return loginctl(['terminate-session', args.id]).status;
+  const result = loginctl(['terminate-session', args.id])
+
+  context.pubsub.publish(context.events.TERMINATE_SESSION, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'TERMINATE_SESSION',
+      args: {
+        id: args.id
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.terminateUser = (parent, args) => {
-  return loginctl(['terminate-user', args.uid]).status;
+  const result = loginctl(['terminate-user', args.uid])
+
+  context.pubsub.publish(context.events.TERMINATE_USER, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'TERMINATE_USER',
+      args: {
+        uid: args.uid
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.setHostname = (parent, args) => {
-  return hostnamectl(['set-hostname', args.name]).status;
+  const result = hostnamectl(['set-hostname', args.name])
+
+  context.pubsub.publish(context.events.SET_HOSTNAME, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_HOSTNAME',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setIconName = (parent, args) => {
-  return hostnamectl(['set-icon-name', args.name]).status;
+  const result = hostnamectl(['set-icon-name', args.name])
+  
+  context.pubsub.publish(context.events.SET_ICON_NAME, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_ICON_NAME',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setChassis = (parent, args) => {
-  return hostnamectl(['set-chassis', args.name.toLowerCase()]).status;
+  const result = hostnamectl(['set-chassis', args.name.toLowerCase()])
+  
+  context.pubsub.publish(context.events.SET_CHASSIS, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_CHASSIS',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setDeploymentEnv = (parent, args) => {
-  return hostnamectl(['set-deployment', args.name]).status;
+  const result = hostnamectl(['set-deployment', args.name])
+  
+  context.pubsub.publish(context.events.SET_DEPLOYMENT, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_DEPLOYMENT',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setLocation = (parent, args) => {
-  return hostnamectl(['set-location', args.name]).status;
+  const result = hostnamectl(['set-location', args.name])
+
+  context.pubsub.publish(context.events.SET_LOCATION, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_LOCATION',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.setLocale = (parent, args) => {
-  return localectl(['set-locale', args.name]).status;
+  const result = localectl(['set-locale', args.name])
+  
+  context.pubsub.publish(context.events.SET_LOCALE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_LOCALE',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setKeymap = (parent, args) => {
-  return localectl(['set-keymap', args.name]).status;
+  const result = localectl(['set-keymap', args.name])
+
+  context.pubsub.publish(context.events.SET_KEYMAP, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_KEYMAP',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.setX11Keymap = (parent, args) => {
-  return localectl(['set-x11-keymap', args.name]).status;
+  const result = localectl(['set-x11-keymap', args.name])
+
+  context.pubsub.publish(context.events.SET_X11_KEYMAP, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_X11_KEYMAP',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+  
+  return result.status;
 };
 
 exports.updateBootLoader = (parent, args) => {
-  return bootctl(['update']).status;
+  const result = bootctl(['update'])
+  
+  context.pubsub.publish(context.events.UPDATE_BOOT_LOADER, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'UPDATE_BOOT_LOADER',
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.installBootLoader = (parent, args) => {
-  return bootctl(['install']).status;
+  const result = bootctl(['install'])
+  
+  context.pubsub.publish(context.events.INSTALL_BOOT_LOADER, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'INSTALL_BOOT_LOADER',
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.removeBootLoader = (parent, args) => {
-  return bootctl(['remove']).status;
+  const result = bootctl(['remove'])
+  
+  context.pubsub.publish(context.events.REMOVE_BOOT_LOADER, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'REMOVE_BOOT_LOADER',
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setTimezone = (parent, args) => {
-  return timedatectl(['set-timezone', args.timezone]).status;
+  const result = timedatectl(['set-timezone', args.timezone])
+  
+  context.pubsub.publish(context.events.SET_TIMEZONE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_TIMEZONE',
+      args: {
+        timezone: args.timezone
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.setTime = (parent, args) => {
-  return timedatectl(['set-time', args.time]).status;
+  const result = timedatectl(['set-time', args.time])
+  
+  context.pubsub.publish(context.events.SET_TIME, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'SET_TIME',
+      args: {
+        time: args.time
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.uploadAudioSample = (parent, args) => {
-  return pactl(['upload-sample', args.filename]).status;
+  const result = pactl(['upload-sample', args.filename])
+  
+  context.pubsub.publish(context.events.UPLOAD_SAMPLE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'UPLOAD_SAMPLE',
+      args: {
+        filename: args.filename
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.playAudioSample = (parent, args) => {
-  return pactl(['play-sample', args.name]).status;
+  const result = pactl(['play-sample', args.name])
+  
+  context.pubsub.publish(context.events.PLAY_AUDIO_SAMPLE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'PLAY_AUDIO_SAMPLE',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
 
 exports.removeAudioSample = (parent, args) => {
-  return pactl(['remove-sample', args.name]).status;
+  const result = pactl(['remove-sample', args.name])
+  
+  context.pubsub.publish(context.events.REMOVE_AUDIO_SAMPLE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'REMOVE_AUDIO_SAMPLE',
+      args: {
+        name: args.name
+      },
+      status: 0
+    })
+  });
+
+  return result.status;
 };
