@@ -8,9 +8,8 @@ const busctl = require('../helpers/busctl');
  * Define and export resolvers
  */
 
-exports.somethingChanged = {
+exports.log = {
   subscribe: (parent, args, context) => {
-    console.log('Subscription.somethingChanged')
-    return context.pubsub.asyncIterator(context.events.SOMETHING_CHANGED_TOPIC);
+    return context.pubsub.asyncIterator([...Object.values(context.events)]);
   },
 };

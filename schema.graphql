@@ -476,9 +476,8 @@ type Mutation {
 The root Subscription type.
 """
 type Subscription {
-  somethingChanged: JSON
+  log: JSON
 }
-# captureSericeMessages: JSON
 
 """
 A systemd Unit type.
