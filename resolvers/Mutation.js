@@ -27,69 +27,25 @@ const ETC_DIR  = '/etc/systemd/system';
 
 exports.setDefault = (parent, args, context) => {
   const result = systemctl(['set-default', args.pattern]);
-
-  context.pubsub.publish(context.events.SET_DEFAULT, {
-    log: JSON.stringify({
-      createdAt: new Date(),
-      event: 'SET_DEFAULT',
-      args: {
-        pattern: args.pattern,
-      },
-      status: result.status
-    })
-  });
-
+  log(context, 'SET_DEFAULT', args, result.status);
   return result.status;
 };
 
 exports.startUnit = (parent, args, context) => {
   const result = systemctl(['start', args.pattern]);
-
-  context.pubsub.publish(context.events.START_UNIT, {
-    log: JSON.stringify({
-      createdAt: new Date(),
-      event: 'START_UNIT',
-      args: {
-        pattern: args.pattern,
-      },
-      status: result.status
-    })
-  });
-
+  log(context, 'START_UNIT', args, result.status);
   return result.status;
 };
 
 exports.stopUnit = (parent, args, context) => {
   const result = systemctl(['stop', args.pattern]);
-
-  context.pubsub.publish(context.events.STOP_UNIT, {
-    log: JSON.stringify({
-      createdAt: new Date(),
-      event: 'STOP_UNIT',
-      args: {
-        pattern: args.pattern,
-      },
-      status: result.status
-    })
-  });
-
+  log(context, 'STOP_UNIT', args, result.status);
   return result.status;
 };
 
 exports.reloadUnit = (parent, args, context) => {
   const result = systemctl(['reload', args.pattern]);
-
-  context.pubsub.publish(context.events.RELOAD_UNIT, {
-    log: JSON.stringify({
-      createdAt: new Date(),
-      event: 'RELOAD_UNIT',
-      args: {
-        pattern: args.pattern,
-      },
-      status: result.status
-    })
-  });
-
+  log(context, 'RELOAD_UNIT', args, result.status);
   return result.status;
 };
 
