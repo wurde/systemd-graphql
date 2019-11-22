@@ -879,7 +879,7 @@ exports.unlockDisk = (parent, args) => {
       createdAt: new Date(),
       event: 'UNLOCK_DISK',
       args: {
-        device: args.device
+        device: args.device,
         keyFile: args.keyFile
       },
       status: result.status
