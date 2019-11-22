@@ -1,5 +1,10 @@
 # Upload audio sample.
 
 mutation UploadAudioSample {
-  uploadAudioSample(filename: "chirp.ogg")
+  uploadAudioSample(filename: "/usr/share/sounds/gnome/default/alerts/bark.ogg")
 }
+#=> {
+#=>   "data": {
+#=>     "uploadAudioSample": 0
+#=>   }
+#=> }

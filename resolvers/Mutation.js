@@ -10,6 +10,7 @@ const hostnamectl = require('../helpers/hostnamectl');
 const localectl = require('../helpers/localectl');
 const bootctl = require('../helpers/bootctl');
 const timedatectl = require('../helpers/timedatectl');
+const pactl = require('../helpers/pactl');
 
 /**
  * Constants
@@ -191,4 +192,12 @@ exports.setTimezone = (parent, args) => {
 
 exports.setTime = (parent, args) => {
   return timedatectl(['set-time', args.time]).status;
+};
+
+exports.uploadAudioSample = (parent, args) => {
+  return pactl(['upload-sample', args.filename]).status;
+};
+
+exports.playAudioSample = (parent, args) => {
+  return pactl(['play-sample', args.name]).status;
 };

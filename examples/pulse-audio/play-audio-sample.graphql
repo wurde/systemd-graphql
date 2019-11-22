@@ -1,5 +1,10 @@
 # Play audio sample.
 
 mutation PlayAudioSample {
-  playAudioSample(name: "bell.ogg")
+  playAudioSample(name: "bark")
 }
+#=> {
+#=>   "data": {
+#=>     "playAudioSample": 0
+#=>   }
+#=> }

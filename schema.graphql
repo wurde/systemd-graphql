@@ -450,6 +450,14 @@ type Mutation {
   Set the system clock to the specified time. This will also update the RTC time accordingly. The time may be specified in the format "2012-10-30 18:17:16". Returns the exit code of the process.
   """
   setTime(time: String!): Int!
+  """
+  Upload a sound from the specified audio file into the sample cache. The file types supported are those understood by libsndfile. Returns the exit code of the process.
+  """
+  uploadAudioSample(filename: String!): Int!
+  """
+  Play the specified sample from the sample cache. Returns the exit code of the process.
+  """
+  playAudioSample(name: String!): Int!
 }
 
 """
