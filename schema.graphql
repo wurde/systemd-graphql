@@ -279,6 +279,10 @@ The root Mutation type.
 """
 type Mutation {
   """
+  Test
+  """
+  test: Int!
+  """
   Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit. Returns the exit code of the process.
   """
   setDefault(name: String!): Int!
@@ -472,7 +476,7 @@ type Mutation {
 The root Subscription type.
 """
 type Subscription {
-  somethingChanged: String
+  somethingChanged: JSON
 }
 # captureSericeMessages: JSON
 

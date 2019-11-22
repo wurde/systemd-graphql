@@ -23,6 +23,13 @@ const ETC_DIR  = '/etc/systemd/system';
  * Define and export resolvers
  */
 
+exports.test = (parent, args, context) => {
+  context.pubsub.publish(context.events.SOMETHING_CHANGED_TOPIC, {
+    somethingChanged: JSON.stringify({ id: '123' })
+  });
+  return 0;
+};
+
 exports.setDefault = (parent, args) => {
   return systemctl(['set-default', args.pattern]).status;
 };

@@ -5,15 +5,12 @@
 const busctl = require('../helpers/busctl');
 
 /**
- * Constants
- */
-
-const SOMETHING_CHANGED_TOPIC = 'something_changed';
-
-/**
  * Define and export resolvers
  */
 
 exports.somethingChanged = {
-  subscribe: (parent, args, context) => context.pubsub.asyncIterator(SOMETHING_CHANGED_TOPIC),
+  subscribe: (parent, args, context) => {
+    console.log('Subscription.somethingChanged')
+    return context.pubsub.asyncIterator(context.events.SOMETHING_CHANGED_TOPIC);
+  },
 };

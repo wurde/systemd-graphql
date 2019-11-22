@@ -16,7 +16,6 @@ const pidof = require('./helpers/pidof');
  */
 
 const port = process.env.PORT || 18888;
-const pubsub = new PubSub();
 
 /**
  * Require root privileges.
@@ -56,7 +55,8 @@ const server = new GraphQLServer({
   typeDefs: path.resolve(path.join(__dirname, 'schema.graphql')),
   resolvers,
   context: {
-    pubsub
+    pubsub: new PubSub(),
+    events: require('./events/index'),
   }
 });
 
