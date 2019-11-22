@@ -3,3 +3,15 @@
 query GetDiskStatus {
   diskStatus
 }
+#=> {
+#=>   "data": {
+#=>     "diskStatus": [
+#=>       {
+#=>         "model": "Samsung SSD 960 EVO 500GB",
+#=>         "revision": "",
+#=>         "serial": "S3X4NB0K130397M",
+#=>         "device": "nvme0n1"
+#=>       }
+#=>     ]
+#=>   }
+#=> }

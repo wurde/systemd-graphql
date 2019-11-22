@@ -97,6 +97,10 @@ type Query {
   """
   audioInfo: JSON!
   """
+  Shows high-level information about disk drives and block devices.
+  """
+  diskStatus: JSON
+  """
   Show information about a link: type, state, kernel module driver, hardware and IP address, configured DNS servers, etc.
   """
   networkLinkStatus(name: String!): JSON

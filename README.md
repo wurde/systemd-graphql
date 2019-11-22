@@ -72,8 +72,6 @@ sudo npm start
 ### D-BUS Management (`busctl`)
 
 - [List bus services](./examples/d-bus/list-bus-services.graphql)
-- [Capture service messages](./examples/d-bus/capture-service-messages.graphql)
-- [Monitor all messages](./examples/d-bus/monitor-all-messages.graphql)
 
 ### Disk Management (`udisksctl`)
 

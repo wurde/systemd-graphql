@@ -13,6 +13,7 @@ const bootctl = require('../helpers/bootctl');
 const networkctl = require('../helpers/networkctl');
 const pactl = require('../helpers/pactl');
 const busctl = require('../helpers/busctl');
+const udisksctl = require('../helpers/udisksctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 const audioPropertyParser = require('../helpers/audioPropertyParser');
@@ -56,6 +57,40 @@ exports.audioInfo = (parent, args) => {
   }, {});
 
   return JSON.stringify(result);
+};
+
+exports.diskStatus = (parent, args, context) => {
+  let result = udisksctl(['status'])
+    .stdout.trim()
+    .split('\n');
+
+  const header = result.shift();
+  const headings = header.match(/\b\w+\b/g);
+  const headingIndices = [];
+  for (let i = 0; i < headings.length; i++) {
+    headingIndices.push(header.match(headings[i]).index);
+  }
+
+  const disks = [];
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].match(/\w+/)) {
+      const disk = {};
+
+      for (let j = 0; j < headingIndices.length; j++) {
+        let x;
+        if (j < headingIndices.length - 1) {
+          x = result[i].slice(headingIndices[j], headingIndices[j+1]);
+        } else {
+          x = result[i].slice(headingIndices[j]);
+        }
+        disk[headings[j].toLowerCase()] = x.trim();
+      }
+
+      disks.push(disk);
+    }
+  }
+
+  return JSON.stringify(disks);
 };
 
 exports.networkLinkStatus = (parent, args) => {
