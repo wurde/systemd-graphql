@@ -647,40 +647,13 @@ exports.networkLinks = () => {
   }
 };
 
-exports.audioModules = () => {
-  const result = pactl(['list', 'modules']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioSinks = () => {
-  const result = pactl(['list', 'sinks']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioSinkInputs = () => {
-  const result = pactl(['list', 'sink-inputs']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioSources = () => {
-  const result = pactl(['list', 'sources']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioClients = () => {
-  const result = pactl(['list', 'clients']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioCards = () => {
-  const result = pactl(['list', 'cards']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
-
-exports.audioSamples = () => {
-  const result = pactl(['list', 'samples']).stdout.trim().split('\n\n');
-  return result.map(audioPropertyParser);
-};
+exports.audioModules = () => audioPropertyParser(pactl(['list', 'modules']));
+exports.audioSinks = () => audioPropertyParser(pactl(['list', 'sinks']));
+exports.audioSinkInputs = () => audioPropertyParser(pactl(['list', 'sink-inputs']));
+exports.audioSources = () => audioPropertyParser(pactl(['list', 'sources']));
+exports.audioClients = () => audioPropertyParser(pactl(['list', 'clients']));
+exports.audioCards = () => audioPropertyParser(pactl(['list', 'cards']));
+exports.audioSamples = () => audioPropertyParser(pactl(['list', 'samples']));
 
 exports.busServices = () => {
   const result = busctl(['list', '--no-pager', '--no-legend']).stdout.trim().split('\n');
