@@ -201,3 +201,7 @@ exports.uploadAudioSample = (parent, args) => {
 exports.playAudioSample = (parent, args) => {
   return pactl(['play-sample', args.name]).status;
 };
+
+exports.removeAudioSample = (parent, args) => {
+  return pactl(['remove-sample', args.name]).status;
+};

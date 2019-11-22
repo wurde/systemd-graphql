@@ -458,6 +458,10 @@ type Mutation {
   Play the specified sample from the sample cache. Returns the exit code of the process.
   """
   playAudioSample(name: String!): Int!
+  """
+  Remove the specified sample from the sample cache. Returns the exit code of the process.
+  """
+  removeAudioSample(name: String!): Int!
 }
 
 """
