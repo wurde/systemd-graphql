@@ -3,3 +3,8 @@
 mutation MountDisk {
   mountDisk(device: "/dev/sdb")
 }
+#=> {
+#=>   "output": {
+#=>     "mountDisk": 0
+#=>   }
+#=> }

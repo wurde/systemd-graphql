@@ -3,3 +3,8 @@
 mutation LockDisk {
   lockDisk(device: "/dev/sdb")
 }
+#=> {
+#=>   "output": {
+#=>     "lockDisk": 0
+#=>   }
+#=> }

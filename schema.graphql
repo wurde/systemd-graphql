@@ -482,6 +482,14 @@ type Mutation {
   Unmounts a device. This only works if the device is mounted. Returns the exit code of the process.
   """
   unmountDisk(device: String!): Int!
+  """
+  Locks a device. This only works if the device is a cleartext device backed by a cryptotext device. Returns the exit code of the process.
+  """
+  lockDisk(device: String!): Int!
+  """
+  Unlocks an encrypted device. Returns the exit code of the process.
+  """
+  unlockDisk(device: String! keyFile: String!): Int!
 }
 
 """

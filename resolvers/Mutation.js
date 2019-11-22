@@ -799,7 +799,12 @@ exports.removeAudioSample = (parent, args) => {
 };
 
 exports.mountDisk = (parent, args) => {
-  const result = udisksctl(['mount', '--block-device', args.device]);
+  const result = udisksctl([
+    'mount',
+    '--block-device',
+    args.device,
+    '--no-user-interaction'
+  ]);
 
   context.pubsub.publish(context.events.REMOVE_AUDIO_SAMPLE, {
     log: JSON.stringify({
@@ -816,7 +821,12 @@ exports.mountDisk = (parent, args) => {
 };
 
 exports.unmountDisk = (parent, args) => {
-  const result = udisksctl(['unmount', '--block-device', args.device]);
+  const result = udisksctl([
+    'unmount',
+    '--block-device',
+    args.device,
+    '--no-user-interaction'
+  ]);
 
   context.pubsub.publish(context.events.UNMOUNT_DISK, {
     log: JSON.stringify({
@@ -824,6 +834,53 @@ exports.unmountDisk = (parent, args) => {
       event: 'UNMOUNT_DISK',
       args: {
         device: args.device
+      },
+      status: result.status
+    })
+  });
+
+  return result.status;
+};
+
+exports.lockDisk = (parent, args) => {
+  const result = udisksctl([
+    'lock',
+    '--block-device',
+    args.device,
+    '--no-user-interaction'
+  ]);
+
+  context.pubsub.publish(context.events.LOCK_DISK, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'LOCK_DISK',
+      args: {
+        device: args.device
+      },
+      status: result.status
+    })
+  });
+
+  return result.status;
+};
+
+exports.unlockDisk = (parent, args) => {
+  const result = udisksctl([
+    'unlock',
+    '--block-device',
+    args.device,
+    '--key-file',
+    args.keyFile,
+    '--no-user-interaction'
+  ]);
+
+  context.pubsub.publish(context.events.UNLOCK_DISK, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'UNLOCK_DISK',
+      args: {
+        device: args.device
+        keyFile: args.keyFile
       },
       status: result.status
     })
