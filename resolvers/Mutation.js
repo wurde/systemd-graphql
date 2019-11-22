@@ -12,6 +12,7 @@ const bootctl = require('../helpers/bootctl');
 const timedatectl = require('../helpers/timedatectl');
 const pactl = require('../helpers/pactl');
 const busctl = require('../helpers/busctl');
+const udisksctl = require('../helpers/udisksctl');
 
 /**
  * Constants
@@ -476,7 +477,7 @@ exports.lockSession = (parent, args) => {
       args: {
         id: args.id,
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -493,7 +494,7 @@ exports.unlockSession = (parent, args) => {
       args: {
         id: args.id
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -510,7 +511,7 @@ exports.terminateSession = (parent, args) => {
       args: {
         id: args.id
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -527,7 +528,7 @@ exports.terminateUser = (parent, args) => {
       args: {
         uid: args.uid
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -544,7 +545,7 @@ exports.setHostname = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -561,7 +562,7 @@ exports.setIconName = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -578,7 +579,7 @@ exports.setChassis = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -595,7 +596,7 @@ exports.setDeploymentEnv = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -612,7 +613,7 @@ exports.setLocation = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -629,7 +630,7 @@ exports.setLocale = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -646,7 +647,7 @@ exports.setKeymap = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -663,7 +664,7 @@ exports.setX11Keymap = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
   
@@ -677,7 +678,7 @@ exports.updateBootLoader = (parent, args) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'UPDATE_BOOT_LOADER',
-      status: 0
+      status: result.status
     })
   });
 
@@ -691,7 +692,7 @@ exports.installBootLoader = (parent, args) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'INSTALL_BOOT_LOADER',
-      status: 0
+      status: result.status
     })
   });
 
@@ -705,7 +706,7 @@ exports.removeBootLoader = (parent, args) => {
     log: JSON.stringify({
       createdAt: new Date(),
       event: 'REMOVE_BOOT_LOADER',
-      status: 0
+      status: result.status
     })
   });
 
@@ -722,7 +723,7 @@ exports.setTimezone = (parent, args) => {
       args: {
         timezone: args.timezone
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -739,7 +740,7 @@ exports.setTime = (parent, args) => {
       args: {
         time: args.time
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -756,7 +757,7 @@ exports.uploadAudioSample = (parent, args) => {
       args: {
         filename: args.filename
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -773,7 +774,7 @@ exports.playAudioSample = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
     })
   });
 
@@ -790,7 +791,41 @@ exports.removeAudioSample = (parent, args) => {
       args: {
         name: args.name
       },
-      status: 0
+      status: result.status
+    })
+  });
+
+  return result.status;
+};
+
+exports.mountDisk = (parent, args) => {
+  const result = udisksctl(['mount', '--block-device', args.device]);
+
+  context.pubsub.publish(context.events.REMOVE_AUDIO_SAMPLE, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'MOUNT_DISK',
+      args: {
+        device: args.device
+      },
+      status: result.status
+    })
+  });
+
+  return result.status;
+};
+
+exports.unmountDisk = (parent, args) => {
+  const result = udisksctl(['unmount', '--block-device', args.device]);
+
+  context.pubsub.publish(context.events.UNMOUNT_DISK, {
+    log: JSON.stringify({
+      createdAt: new Date(),
+      event: 'UNMOUNT_DISK',
+      args: {
+        device: args.device
+      },
+      status: result.status
     })
   });
 

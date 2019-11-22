@@ -99,7 +99,7 @@ type Query {
   """
   Shows high-level information about disk drives and block devices.
   """
-  diskStatus: JSON
+  diskStatus: [JSON!]!
   """
   Show information about a link: type, state, kernel module driver, hardware and IP address, configured DNS servers, etc.
   """
@@ -474,6 +474,14 @@ type Mutation {
   Remove the specified sample from the sample cache. Returns the exit code of the process.
   """
   removeAudioSample(name: String!): Int!
+  """
+  Mounts a device. The device will be mounted in a subdirectory in the /media hierarchy. Returns the exit code of the process.
+  """
+  mountDisk(device: String!): Int!
+  """
+  Unmounts a device. This only works if the device is mounted. Returns the exit code of the process.
+  """
+  unmountDisk(device: String!): Int!
 }
 
 """
