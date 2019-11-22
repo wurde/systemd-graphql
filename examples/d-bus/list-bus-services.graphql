@@ -3,3 +3,39 @@
 query ListBusServices {
   busServices
 }
+#=> {
+#=>   "data": {
+#=>     "busServices": [
+#=>       {
+#=>         "name": ":1.0",
+#=>         "pid": "1",
+#=>         "process": "systemd",
+#=>         "user": "root",
+#=>         "connection": ":1.0",
+#=>         "unit": "init.scope",
+#=>         "session": "-",
+#=>         "description": "-"
+#=>       },
+#=>       {
+#=>         "name": ":1.1",
+#=>         "pid": "962",
+#=>         "process": "systemd-resolve",
+#=>         "user": "systemd-resolve",
+#=>         "connection": ":1.1",
+#=>         "unit": "systemd-resolved.service",
+#=>         "session": "-",
+#=>         "description": "-"
+#=>       },
+#=>       {
+#=>         "name": "org.gnome.DisplayManager",
+#=>         "pid": "1330",
+#=>         "process": "gdm3",
+#=>         "user": "root",
+#=>         "connection": ":1.16",
+#=>         "unit": "gdm.service",
+#=>         "session": "-",
+#=>         "description": "-"
+#=>       }
+#=>     ]
+#=>   }
+#=> }
