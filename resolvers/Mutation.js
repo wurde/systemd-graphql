@@ -11,6 +11,7 @@ const localectl = require('../helpers/localectl');
 const bootctl = require('../helpers/bootctl');
 const timedatectl = require('../helpers/timedatectl');
 const pactl = require('../helpers/pactl');
+const busctl = require('../helpers/busctl');
 
 /**
  * Constants

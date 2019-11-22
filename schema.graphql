@@ -265,6 +265,10 @@ type Query {
   """
   audioSamples: [JSON!]!
   """
+  Show all peers on the bus, by their service names.
+  """
+  busServices: [JSON!]!
+  """
   Query the systemd journal.
   """
   journal(unit: String, since: Date, lines: Int, output: JournalOutputType): [String!]!

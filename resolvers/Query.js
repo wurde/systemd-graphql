@@ -12,9 +12,11 @@ const timedatectl = require('../helpers/timedatectl');
 const bootctl = require('../helpers/bootctl');
 const networkctl = require('../helpers/networkctl');
 const pactl = require('../helpers/pactl');
+const busctl = require('../helpers/busctl');
 const unitListParser = require('../helpers/unitListParser');
 const systemdAnalyze = require('../helpers/systemdAnalyze');
 const audioPropertyParser = require('../helpers/audioPropertyParser');
+const busServicesParser = require('../helpers/busServicesParser');
 
 /**
  * Define and export resolvers
@@ -643,6 +645,11 @@ exports.audioCards = () => {
 exports.audioSamples = () => {
   const result = pactl(['list', 'samples']).stdout.trim().split('\n\n');
   return result.map(audioPropertyParser);
+};
+
+exports.busServices = () => {
+  const result = busctl(['list', '--no-pager', '--no-legend']).stdout.trim().split('\n');
+  return result.map(busServicesParser);
 };
 
 exports.journal = (parent, args) => {
