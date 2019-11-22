@@ -9,7 +9,9 @@ const camelcase = require('camelcase');
  */
 
 function audioPropertyParser(result) {
-  result = result.stdout.trim().split('\n\n');
+  result = result.stdout.trim()
+  if (result.length === 0) return []
+  result = result.split('\n\n');
 
   result = result.map(inputStr => {
     const obj = inputStr.split('\n').reduce((obj, line, i) => {
