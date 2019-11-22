@@ -8,6 +8,7 @@
 
 const path = require('path');
 const { GraphQLServer } = require('graphql-yoga');
+const { PubSub } = require('graphql-subscriptions');
 const pidof = require('./helpers/pidof');
 
 /**
@@ -15,6 +16,7 @@ const pidof = require('./helpers/pidof');
  */
 
 const port = process.env.PORT || 18888;
+const pubsub = new PubSub();
 
 /**
  * Require root privileges.
@@ -39,6 +41,7 @@ if (!pidof('/sbin/init').includes(pidof('systemd').pop())) {
 const resolvers = {
   Query: require('./resolvers/Query'),
   Mutation: require('./resolvers/Mutation'),
+  Subscription: require('./resolvers/Subscription'),
   Unit: require('./resolvers/Unit'),
   UnitStatus: require('./resolvers/UnitStatus'),
   Date: require('./resolvers/Date'),
@@ -52,6 +55,9 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: path.resolve(path.join(__dirname, 'schema.graphql')),
   resolvers,
+  context: {
+    pubsub
+  }
 });
 
 /**

@@ -469,6 +469,14 @@ type Mutation {
 }
 
 """
+The root Subscription type.
+"""
+type Subscription {
+  somethingChanged: String
+}
+# captureSericeMessages: JSON
+
+"""
 A systemd Unit type.
 """
 type Unit {
